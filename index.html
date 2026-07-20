@@ -78,7 +78,7 @@
 
         /* EN-TÊTE / LOGO ET TITRE */
         .header-brand {
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .header-brand img {
@@ -96,12 +96,13 @@
             margin-bottom: 10px;
         }
 
-        /* GRILLE EN COLONNES */
+        /* GRILLE EN COLONNES ALIGNÉES SUR LE HAUT */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            margin-top: 30px;
+            margin-top: 20px;
+            align-items: start;
         }
 
         @media (max-width: 768px) {
@@ -116,7 +117,7 @@
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
             color: var(--brand-red);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         /* LISTE DES PRODUITS ET LIGNES FINES */
@@ -124,7 +125,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 10px 0;
+            padding: 11px 0; /* Padding ajusté pour un équilibre parfait */
             border-bottom: 1px solid var(--line-color);
         }
 
@@ -141,7 +142,7 @@
         }
 
         .item-desc {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: #666;
             margin-top: 2px;
         }
@@ -233,7 +234,7 @@
 
         <div class="menu-grid">
             
-            <!-- COLONNE GAUCHE : PIZZAS (PARTIE 1) + BOISSONS POUR ÉQUILIBRER -->
+            <!-- COLONNE GAUCHE : 8 PIZZAS -->
             <div>
                 <h2 class="section-title">Pizzas</h2>
                 
@@ -305,44 +306,12 @@
                     </div>
                     <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                 </div>
-
-                <!-- SECTION BOISSONS POSITIONNÉE EN BAS À GAUCHE POUR COMBLES LE VIDE -->
-                <h2 class="section-title" style="margin-top: 45px;">Boissons</h2>
-
-                <div class="item-row">
-                    <div class="item-details">
-                        <div class="item-name">Eau 0,5 L</div>
-                    </div>
-                    <div class="item-prices"><span>500</span></div>
-                </div>
-
-                <div class="item-row">
-                    <div class="item-details">
-                        <div class="item-name">Eau 1 L / Soda</div>
-                        <div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div>
-                    </div>
-                    <div class="item-prices"><span>1 000</span></div>
-                </div>
-
-                <div class="item-row">
-                    <div class="item-details">
-                        <div class="item-name">Ice Tea / Cody's</div>
-                    </div>
-                    <div class="item-prices"><span>1 500</span></div>
-                </div>
-
-                <div class="item-row">
-                    <div class="item-details">
-                        <div class="item-name">Red Bull</div>
-                    </div>
-                    <div class="item-prices"><span>2 000</span></div>
-                </div>
             </div>
 
-            <!-- COLONNE DROITE : SUITE ET FIN DES PIZZAS -->
+            <!-- COLONNE DROITE : 7 PIZZAS + BOISSONS EN BAS À DROITE -->
             <div>
                 <!-- En-tête de prix aligné avec la colonne de gauche -->
-                <div class="price-header" style="margin-top: 55px;">
+                <div class="price-header" style="margin-top: 52px;">
                     <span>Moy.</span>
                     <span>Gde.</span>
                 </div>
@@ -401,6 +370,38 @@
                         <div class="item-desc">Sauce tomate, fromage, poivrons, oignons, champignons, olives, origan</div>
                     </div>
                     <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                </div>
+
+                <!-- SECTION BOISSONS BIEN CALÉE EN BAS À DROITE -->
+                <h2 class="section-title" style="margin-top: 32px;">Boissons</h2>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Eau 0,5 L</div>
+                    </div>
+                    <div class="item-prices"><span>500</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Eau 1 L / Soda</div>
+                        <div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div>
+                    </div>
+                    <div class="item-prices"><span>1 000</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Ice Tea / Cody's</div>
+                    </div>
+                    <div class="item-prices"><span>1 500</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Red Bull</div>
+                    </div>
+                    <div class="item-prices"><span>2 000</span></div>
                 </div>
 
             </div>
