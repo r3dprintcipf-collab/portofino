@@ -42,12 +42,32 @@
                 radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0);
             background-size: 12px 12px, 20px 20px;
             background-position: 0 0, 6px 6px;
-            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- ANIMATIONS EN CASCADE FLUIDES (STAGGERED FADE-IN) --- */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(18px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .header-brand {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+        }
+
+        .menu-grid > div:nth-child(1) {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+        }
+
+        .menu-grid > div:nth-child(2) {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        .call-bar {
+            opacity: 0;
+            animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
         }
 
         /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS --- */
@@ -95,7 +115,7 @@
             margin: 0 auto;
             display: block;
             mix-blend-mode: multiply;
-            background: transparent;
+            background: transparent !important;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
         }
 
