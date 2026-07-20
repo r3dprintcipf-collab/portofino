@@ -112,13 +112,20 @@
             margin-bottom: 12px;
         }
 
-        /* LISTE DES PRODUITS ET LIGNES FINES */
+        /* LISTE DES PRODUITS ET LIGNES FINES AVEC EFFET INTERACTIF */
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 15px 0;
+            padding: 15px 10px;
             border-bottom: 1px solid var(--line-color);
+            border-radius: 6px;
+            transition: background-color 0.2s ease, transform 0.15s ease;
+        }
+
+        .item-row:hover {
+            background-color: rgba(168, 35, 41, 0.04);
+            transform: scale(1.005);
         }
 
         .item-details { padding-right: 15px; }
@@ -145,6 +152,7 @@
             letter-spacing: 1px;
             color: #888;
             padding-bottom: 5px;
+            padding-right: 10px;
             font-weight: 700;
         }
 
@@ -198,7 +206,7 @@
             }
 
             .item-row {
-                padding: 14px 0;
+                padding: 14px 5px;
             }
 
             .btn-call {
@@ -223,7 +231,7 @@
         <!-- EN-TÊTE OPTIMISÉ CHARGEMENT RAPIDE -->
         <div class="header-brand">
             <img src="logo.jpg" 
-                 alt="Portofino Logo" 
+                 alt="Logo Portofino - Pizzeria & Grill" 
                  width="150" 
                  height="150" 
                  fetchpriority="high" 
