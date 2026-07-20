@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofino - Menu</title>
-    <!-- Police manuscrite moderne style Kinū -->
+    <!-- Polices Google : Caveat pour 'menu' / Great Vibes pour la signature 'By H. Salloub' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f7f3e9; /* Fond crème identique à Kinū */
+            --bg-color: #f7f3e9; /* Fond crème */
             --text-color: #1a1a1a;
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* --- FRISE DAMIER PARFAITE SUR LES 4 CÔTÉS --- */
+        /* --- FRISE DAMIER SUR LES 4 CÔTÉS --- */
         .damier {
             position: fixed;
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
@@ -102,14 +102,14 @@
             color: var(--brand-red);
         }
 
-        /* CONTENEUR PRINCIPAL PLEIN ÉCRAN */
+        /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 50px 60px;
         }
 
-        /* EN-TÊTE / LOGO ET TITRE CENTRÉS */
+        /* EN-TÊTE / LOGO ET TITRES CENTRÉS */
         .header-brand {
             text-align: center;
             margin-bottom: 35px;
@@ -128,14 +128,17 @@
             font-size: 4rem;
             color: var(--brand-green);
             line-height: 1;
-            margin-bottom: 2px;
+            margin-bottom: -5px;
         }
 
+        /* SIGNATURE STYLE CALLIGRAPHIE COMME SUR L'IMAGE */
         .brand-subtitle {
-            font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.8rem;
             color: var(--brand-red);
-            line-height: 1;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            margin-top: 5px;
             margin-bottom: 10px;
         }
 
@@ -153,10 +156,10 @@
             .container { padding: 15px 20px 50px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
             .page-title { font-size: 3.2rem; }
-            .brand-subtitle { font-size: 1.5rem; }
+            .brand-subtitle { font-size: 2.3rem; }
         }
 
-        /* TITRES DE SECTIONS STYLE MANUSCRIT */
+        /* TITRES DE SECTIONS */
         .section-title {
             font-family: 'Caveat', cursive;
             font-size: 2.5rem;
@@ -222,7 +225,7 @@
             text-align: right;
         }
 
-        /* BOUTON D'APPEL EN BAS DE PAGE */
+        /* BOUTON DE COMMANDE EN BAS DE PAGE */
         .call-bar {
             text-align: center;
             margin-top: 50px;
@@ -275,11 +278,11 @@
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
         
-        <!-- EN-TÊTE CENTRÉ AVEC SUBTITLE MANUSCRIT -->
+        <!-- EN-TÊTE CENTRÉ AVEC SUBTITLE CALLIGRAPHIQUE -->
         <div class="header-brand">
             <img src="logo.jpg" alt="Portofino Logo">
             <h1 class="page-title">menu</h1>
-            <div class="brand-subtitle">by H. Salloub</div>
+            <div class="brand-subtitle">By H. Salloub</div>
         </div>
 
         <div class="menu-grid">
