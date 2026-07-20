@@ -11,6 +11,10 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --border-color: #e5e0d8;
+            /* Paramètres de la frise de damier */
+            --frise-height: 25px; /* Hauteur totale de la frise */
+            --frise-size: 15px; /* Taille d'un carré rouge/blanc (sans la bordure rouge) */
+            --frise-border: 1px; /* Épaisseur des bordures rouges horizontales */
         }
 
         * {
@@ -24,27 +28,64 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.5;
-            padding: 20px 10px 100px;
+            padding: 20px 10px 100px; /* Plus d'espace en haut pour la frise */
         }
 
-        /* Conteneur principal avec la bordure à damier rouge & blanc */
+        /* Conteneur principal */
         .menu-wrapper {
             max-width: 620px;
             margin: 0 auto;
             background-color: var(--bg-color);
-            /* Bordure damier régulier 16px sur les 4 côtés */
-            border: 16px solid transparent;
-            border-image: repeating-conic-gradient(
-                var(--brand-red) 0% 25%, 
-                #ffffff 0% 50%
-            ) 16;
             padding: 25px 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative; /* Pour positionner les frises */
+            overflow: hidden; /* Pour que la frise du bas ne déborde pas */
         }
 
-        /* En-tête / Logo */
+        /* --- La Frise de Damier Horizontale --- */
+        .damier-frise {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: var(--frise-height);
+            /* Motif de damier horizontal */
+            background-color: transparent;
+            background-image:
+                /* Les bordures rouges horizontales */
+                linear-gradient(var(--brand-red) 1px, transparent 1px),
+                linear-gradient(to top, var(--brand-red) 1px, transparent 1px),
+                /* Le motif de damier lui-même */
+                repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
+            /* Taille et répétition du motif de damier */
+            background-size: 100% var(--frise-border), 100% var(--frise-border), var(--frise-size) var(--frise-size);
+            /* Positionnement des bordures rouges */
+            background-position: 0 0, 0 100%, center center;
+            background-repeat: repeat-x; /* Répéter horizontalement uniquement */
+            border-bottom: var(--frise-border) solid var(--brand-red); /* Bordure rouge du bas */
+        }
+
+        /* Frise du haut */
+        .frise-top {
+            top: 0;
+            height: var(--frise-height);
+            /* Ajouter une petite bordure rouge en haut pour correspondre */
+            border-top: var(--frise-border) solid var(--brand-red);
+        }
+
+        /* Frise du bas */
+        .frise-bottom {
+            bottom: 0;
+            height: var(--frise-height);
+            /* Inverser le motif pour un effet miroir */
+            transform: scaleY(-1);
+            /* Ajouter une petite bordure rouge en bas pour correspondre */
+            border-bottom: var(--frise-border) solid var(--brand-red);
+        }
+
+        /* Ajustements de l'en-tête pour accueillir la frise du haut */
         header {
             text-align: center;
+            margin-top: calc(var(--frise-height) + 10px); /* Faire de la place pour la frise du haut */
             margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 2px solid var(--border-color);
@@ -68,6 +109,8 @@
             color: #666;
             font-style: italic;
         }
+
+        /* --- Fin des Frises --- */
 
         /* Titres de sections */
         .section-title {
@@ -181,6 +224,9 @@
 <body>
 
     <div class="menu-wrapper">
+        <!-- Ajout de la frise du haut -->
+        <div class="damier-frise frise-top"></div>
+
         <header>
             <img src="logo.jpg" alt="Portofino Logo">
             <h1>Portofino</h1>
@@ -344,6 +390,9 @@
             <span>Red Bull</span>
             <span class="drink-price">2 000 FCFA</span>
         </div>
+
+        <!-- Ajout de la frise du bas -->
+        <div class="damier-frise frise-bottom"></div>
     </div>
 
     <!-- BOUTON FIXE DE CONTACT -->
