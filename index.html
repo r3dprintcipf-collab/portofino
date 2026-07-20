@@ -35,7 +35,7 @@
             min-height: 100vh;
         }
 
-        /* --- FRISE DAMIER PARFAITE SUR LES 4 CÔTÉS (SANS CHEVAUCHEMENT) --- */
+        /* --- FRISE DAMIER PARFAITE SUR LES 4 CÔTÉS --- */
         .damier {
             position: fixed;
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
@@ -43,7 +43,6 @@
             z-index: 1000;
         }
 
-        /* Haut et bas sur toute la largeur */
         .damier-top {
             top: 0;
             left: 0;
@@ -60,7 +59,6 @@
             background-repeat: repeat-x;
         }
 
-        /* Gauche et droite calés parfaitement entre haut et bas pour ne pas chevaucher */
         .damier-left {
             top: var(--frise-size);
             bottom: var(--frise-size);
@@ -108,18 +106,20 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 50px 100px;
+            padding: 20px 50px 60px;
         }
 
-        /* EN-TÊTE / LOGO ET TITRE */
+        /* EN-TÊTE / LOGO ET TITRE CENTRÉS */
         .header-brand {
+            text-align: center;
             margin-bottom: 35px;
         }
 
         .header-brand img {
-            max-width: 130px;
+            max-width: 140px;
             height: auto;
-            margin-bottom: 15px;
+            margin: 0 auto 15px auto;
+            display: block;
             mix-blend-mode: multiply;
         }
 
@@ -127,6 +127,14 @@
             font-family: 'Caveat', cursive;
             font-size: 4rem;
             color: var(--brand-green);
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .brand-subtitle {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: var(--brand-red);
             line-height: 1;
             margin-bottom: 10px;
         }
@@ -142,9 +150,10 @@
 
         @media (max-width: 768px) {
             nav { padding: 25px 20px 15px; }
-            .container { padding: 15px 20px 100px; }
+            .container { padding: 15px 20px 50px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
-            .page-title { font-size: 3rem; }
+            .page-title { font-size: 3.2rem; }
+            .brand-subtitle { font-size: 1.5rem; }
         }
 
         /* TITRES DE SECTIONS STYLE MANUSCRIT */
@@ -213,38 +222,39 @@
             text-align: right;
         }
 
-        /* BOUTON D'APPEL FIXE ET DISCRET */
+        /* BOUTON D'APPEL EN BAS DE PAGE */
         .call-bar {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1001;
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 20px;
         }
 
         .btn-call {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 12px 22px;
+            padding: 14px 28px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: background-color 0.2s, transform 0.2s;
         }
 
         .btn-call:hover {
             background-color: var(--brand-red);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <!-- FRISE DAMIER FIXE PARFAITE SUR LES 4 CÔTÉS -->
+    <!-- FRISE DAMIER FIXE SUR LES 4 CÔTÉS -->
     <div class="damier damier-top"></div>
     <div class="damier damier-bottom"></div>
     <div class="damier damier-left"></div>
@@ -265,9 +275,11 @@
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
         
+        <!-- EN-TÊTE CENTRÉ AVEC SUBTITLE MANUSCRIT -->
         <div class="header-brand">
             <img src="logo.jpg" alt="Portofino Logo">
             <h1 class="page-title">menu</h1>
+            <div class="brand-subtitle">by H. Salloub</div>
         </div>
 
         <div class="menu-grid">
@@ -445,11 +457,11 @@
 
         </div>
 
-    </div>
+        <!-- BOUTON DE COMMANDE EN BAS DU SITE -->
+        <div class="call-bar">
+            <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
+        </div>
 
-    <!-- BOUTON D'APPEL FLOTTANT -->
-    <div class="call-bar">
-        <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
     </div>
 
 </body>
