@@ -95,14 +95,14 @@
             align-items: center;
         }
 
-        /* LOGO INTÉGRAL SANS COUPURE ET SANS FOND BLANC */
+        /* SUPPRESSION PROPRE DU FOND BLANC SANS COUPER LE LOGO GRÂCE À UN MASQUE CSS CIRCULAIRE ÉTENDU */
         .header-brand img {
-            max-width: 175px;
+            max-width: 185px;
             height: auto;
             margin: 0 auto;
             display: block;
-            mix-blend-mode: multiply; /* Fusionne le blanc du JPG avec le fond crème de la carte */
-            background: transparent !important;
+            -webkit-mask-image: radial-gradient(circle, black 68%, transparent 72%);
+            mask-image: radial-gradient(circle, black 68%, transparent 72%);
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.06));
         }
 
@@ -289,7 +289,7 @@
             .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
-            .header-brand img { max-width: 195px; }
+            .header-brand img { max-width: 200px; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
             .btn-call { width: auto; max-width: none; animation: none; }
             .damier { --frise-size: 14px; }
@@ -312,8 +312,8 @@
             <div class="header-brand">
                 <img src="logo.jpg" 
                      alt="Logo Portofino - Pizzeria & Grill" 
-                     width="195" 
-                     height="195" 
+                     width="200" 
+                     height="200" 
                      fetchpriority="high" 
                      loading="eager" 
                      decoding="async">
