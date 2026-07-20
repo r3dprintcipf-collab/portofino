@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofino - Menu</title>
-    <!-- Polices Google : Caveat pour 'menu' / Great Vibes pour la signature 'By H. Salloub' -->
+    <!-- Polices Google : Caveat pour 'menu' / WindSong pour 'By H. Salloub' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=WindSong:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #f7f3e9; /* Fond crème */
@@ -43,39 +43,12 @@
             z-index: 1000;
         }
 
-        .damier-top {
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--frise-size);
-            background-repeat: repeat-x;
-        }
+        .damier-top { top: 0; left: 0; right: 0; height: var(--frise-size); background-repeat: repeat-x; }
+        .damier-bottom { bottom: 0; left: 0; right: 0; height: var(--frise-size); background-repeat: repeat-x; }
+        .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
+        .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
 
-        .damier-bottom {
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: var(--frise-size);
-            background-repeat: repeat-x;
-        }
-
-        .damier-left {
-            top: var(--frise-size);
-            bottom: var(--frise-size);
-            left: 0;
-            width: var(--frise-size);
-            background-repeat: repeat-y;
-        }
-
-        .damier-right {
-            top: var(--frise-size);
-            bottom: var(--frise-size);
-            right: 0;
-            width: var(--frise-size);
-            background-repeat: repeat-y;
-        }
-
-        /* NAVIGATION STYLE KINŪ */
+        /* NAVIGATION */
         nav {
             display: flex;
             justify-content: space-between;
@@ -87,62 +60,50 @@
             font-weight: 600;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a, .nav-right a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover, .nav-right a:hover {
-            color: var(--brand-red);
-        }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a, .nav-right a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover, .nav-right a:hover { color: var(--brand-red); }
 
         /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 50px 60px;
+            padding: 10px 50px 60px;
         }
 
         /* EN-TÊTE / LOGO ET TITRES CENTRÉS */
         .header-brand {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .header-brand img {
             max-width: 140px;
             height: auto;
-            margin: 0 auto 15px auto;
+            margin: 0 auto 0 auto;
             display: block;
             mix-blend-mode: multiply;
         }
 
+        /* SIGNATURE IDENTIQUE ET MÊMES PROPORTIONS */
+        .brand-subtitle {
+            font-family: 'WindSong', cursive;
+            font-size: 1.6rem;
+            color: var(--brand-red);
+            line-height: 1;
+            margin-top: -6px;
+            margin-bottom: 15px;
+        }
+
         .page-title {
             font-family: 'Caveat', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--brand-green);
             line-height: 1;
-            margin-bottom: -5px;
+            margin-top: 10px;
         }
 
-        /* SIGNATURE STYLE CALLIGRAPHIE COMME SUR L'IMAGE */
-        .brand-subtitle {
-            font-family: 'Alex Brush', cursive;
-            font-size: 2.8rem;
-            color: var(--brand-red);
-            line-height: 1.1;
-            letter-spacing: 1px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-
-        /* GRILLE EN COLONNES ALIGNÉES SUR LE HAUT */
+        /* GRILLE EN COLONNES ALIGNÉES */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -153,10 +114,10 @@
 
         @media (max-width: 768px) {
             nav { padding: 25px 20px 15px; }
-            .container { padding: 15px 20px 50px; }
+            .container { padding: 10px 20px 50px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
-            .page-title { font-size: 3.2rem; }
-            .brand-subtitle { font-size: 2.3rem; }
+            .page-title { font-size: 3rem; }
+            .brand-subtitle { font-size: 1.5rem; }
         }
 
         /* TITRES DE SECTIONS */
@@ -176,23 +137,9 @@
             border-bottom: 1px solid var(--line-color);
         }
 
-        .item-details {
-            padding-right: 20px;
-        }
-
-        .item-name {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-color);
-        }
-
-        .item-desc {
-            font-size: 0.78rem;
-            color: #666;
-            margin-top: 2px;
-        }
+        .item-details { padding-right: 20px; }
+        .item-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-color); }
+        .item-desc { font-size: 0.78rem; color: #666; margin-top: 2px; }
 
         .item-prices {
             display: flex;
@@ -203,10 +150,7 @@
             white-space: nowrap;
         }
 
-        .item-prices span {
-            min-width: 45px;
-            text-align: right;
-        }
+        .item-prices span { min-width: 45px; text-align: right; }
 
         .price-header {
             display: flex;
@@ -220,10 +164,7 @@
             font-weight: 700;
         }
 
-        .price-header span {
-            min-width: 45px;
-            text-align: right;
-        }
+        .price-header span { min-width: 45px; text-align: right; }
 
         /* BOUTON DE COMMANDE EN BAS DE PAGE */
         .call-bar {
@@ -278,11 +219,11 @@
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
         
-        <!-- EN-TÊTE CENTRÉ AVEC SUBTITLE CALLIGRAPHIQUE -->
+        <!-- EN-TÊTE : LOGO + SUBTITLE + TITRE "MENU" -->
         <div class="header-brand">
             <img src="logo.jpg" alt="Portofino Logo">
-            <h1 class="page-title">menu</h1>
             <div class="brand-subtitle">By H. Salloub</div>
+            <h1 class="page-title">menu</h1>
         </div>
 
         <div class="menu-grid">
