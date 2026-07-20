@@ -48,27 +48,11 @@
         .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
         .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
 
-        /* NAVIGATION */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 35px 45px 20px;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a, .nav-right a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
-        .nav-links a:hover, .nav-right a:hover { color: var(--brand-red); }
-
         /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 45px 60px;
+            padding: 40px 45px 60px;
         }
 
         /* EN-TÊTE : LOGO + SUBTITLE + TITRE "MENU" */
@@ -121,12 +105,12 @@
             margin-bottom: 12px;
         }
 
-        /* LISTE DES PRODUITS ET LIGNES FINES - ESPACEMENT ACCRU */
+        /* LISTE DES PRODUITS ET LIGNES FINES */
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 15px 0; /* Plus d'espace vertical entre chaque élément */
+            padding: 15px 0;
             border-bottom: 1px solid var(--line-color);
         }
 
@@ -197,8 +181,7 @@
 
         /* AJUSTEMENT SPÉCIFIQUE MOBILE */
         @media (max-width: 768px) {
-            nav { padding: 30px 20px 15px; }
-            .container { padding: 10px 20px 50px; }
+            .container { padding: 30px 20px 50px; }
             .menu-grid { grid-template-columns: 1fr; gap: 0; }
             .page-title { font-size: 3.5rem; margin-top: 28px; }
             .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
@@ -208,7 +191,7 @@
             }
 
             .item-row {
-                padding: 14px 0; /* Espacement fluide sur mobile */
+                padding: 14px 0;
             }
 
             .btn-call {
@@ -226,18 +209,6 @@
     <div class="damier damier-bottom"></div>
     <div class="damier damier-left"></div>
     <div class="damier damier-right"></div>
-
-    <!-- NAVIGATION STYLE KINŪ -->
-    <nav>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Menu</a>
-            <a href="tel:+2250747005656">Contact</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-        </div>
-    </nav>
 
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
