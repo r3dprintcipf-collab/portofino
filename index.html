@@ -18,7 +18,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 12px;
+            --frise-size: 12px; /* Taille d'un carré */
         }
 
         * {
@@ -69,25 +69,24 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS --- */
+        /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS (AJUSTÉE POUR 2 LIGNES) --- */
         .damier {
             position: fixed;
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
-            background-size: var(--frise-size) var(--frise-size);
             z-index: 1000;
             pointer-events: none;
         }
 
-        .damier-top { top: 0; left: 0; right: 0; height: var(--frise-size); background-repeat: repeat-x; }
-        .damier-bottom { bottom: 0; left: 0; right: 0; height: var(--frise-size); background-repeat: repeat-x; }
-        .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
-        .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
+        .damier-top { top: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-x; }
+        .damier-bottom { bottom: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-x; }
+        .damier-left { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); left: 0; width: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-y; }
+        .damier-right { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); right: 0; width: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-y; }
 
         /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 26px 18px 100px 18px;
+            padding: 36px 24px 100px 24px;
         }
 
         .menu-card {
