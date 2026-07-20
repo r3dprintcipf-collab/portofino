@@ -69,23 +69,19 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- CADRE DAMIER FIXE UNIFIÉ EN PLEIN ÉCRAN (ZÉRO DÉFAUT AUX COINS) --- */
-        .damier-frame {
+        /* --- CADRE DAMIER FIXE PARFAIT SUR LES 4 CÔTÉS (2 LIGNES EXACTES) --- */
+        .damier {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1000;
-            pointer-events: none;
-            /* Motif SVG complet couvrant tout l'écran avec une bordure creusée exactement de 28px (2 carrés) */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
             background-size: 28px 28px;
-            -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            padding: 28px; /* Épaisseur exacte de la frise sur les 4 côtés */
+            z-index: 1000;
+            pointer-events: none;
         }
+
+        .damier-top { top: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
+        .damier-bottom { bottom: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; background-position: 0 -14px; }
+        .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
+        .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; background-position: -14px 0; }
 
         /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
         .container {
@@ -354,8 +350,11 @@
 </head>
 <body>
 
-    <!-- CADRE DAMIER FIXE UNIFIÉ GLOBAL (SANS AUCUN DÉCALAGE AUX COINS) -->
-    <div class="damier-frame"></div>
+    <!-- CADRE DAMIER FIXE SUR LES 4 CÔTÉS (ALIGNEMENT PARFAIT) -->
+    <div class="damier damier-top"></div>
+    <div class="damier damier-bottom"></div>
+    <div class="damier damier-left"></div>
+    <div class="damier damier-right"></div>
 
     <!-- CONTENEUR PRINCIPAL -->
     <div class="container">
