@@ -69,24 +69,19 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- FRISE DAMIER FIXE EN GRADIENT PUR CORRIGÉ --- */
+        /* --- FRISE DAMIER FIXE 100% CARRÉS ROUGES ET BLANCS PARfaits --- */
         .damier {
             position: fixed;
-            background-color: #ffffff;
-            background-image: linear-gradient(45deg, var(--brand-red) 25%, transparent 25%), 
-                              linear-gradient(-45deg, var(--brand-red) 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, var(--brand-red) 75%), 
-                              linear-gradient(-45deg, transparent 75%, var(--brand-red) 75%);
-            background-size: calc(var(--frise-size) * 2) calc(var(--frise-size) * 2);
-            background-position: 0 0, 0 var(--frise-size), var(--frise-size) -14px, -14px 0px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
+            background-size: 28px 28px;
             z-index: 1000;
             pointer-events: none;
         }
 
-        .damier-top { top: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-repeat: repeat-x; }
-        .damier-bottom { bottom: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-repeat: repeat-x; }
-        .damier-left { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); left: 0; width: calc(var(--frise-size) * 2); background-repeat: repeat-y; }
-        .damier-right { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); right: 0; width: calc(var(--frise-size) * 2); background-repeat: repeat-y; }
+        .damier-top { top: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
+        .damier-bottom { bottom: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
+        .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
+        .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; }
 
         /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
         .container {
