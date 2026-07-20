@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofino - Menu</title>
+    <title>Portofino - Menu Digital</title>
     <style>
         :root {
             --bg-color: #fcfbf7;
@@ -11,9 +11,8 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --border-color: #e5e0d8;
-            /* Dimensions ajustées pour des carrés plus grands et sans lignes autour */
-            --frise-thickness: 28px; /* Hauteur/largeur des bandes */
-            --square-size: 14px;    /* Taille agrandie des carrés */
+            --frise-thickness: 24px;
+            --square-size: 12px;
         }
 
         * {
@@ -27,128 +26,136 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.5;
-            padding: 20px 10px 100px;
+            padding: 15px 10px 90px;
         }
 
-        /* Conteneur principal */
+        /* CONTENEUR PRINCIPAL STYLE KINŪ */
         .menu-wrapper {
-            max-width: 620px;
+            max-width: 520px; /* Format resserré style app mobile */
             margin: 0 auto;
             background-color: var(--bg-color);
-            padding: 40px 35px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px 25px 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
             position: relative;
+            border-radius: 12px;
             overflow: hidden;
         }
 
-        /* --- FRISE DAMIER PUR (SANS BORDURES/LIGNES ROUGES) --- */
+        /* --- FRISE DAMIER PUR SUR LES 4 CÔTÉS --- */
         .damier-frise {
             position: absolute;
-            background-color: transparent;
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
             z-index: 10;
         }
+        .frise-top { top: 0; left: 0; right: 0; height: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-x; }
+        .frise-bottom { bottom: 0; left: 0; right: 0; height: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-x; }
+        .frise-left { top: 0; bottom: 0; left: 0; width: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-y; }
+        .frise-right { top: 0; bottom: 0; right: 0; width: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-y; }
 
-        /* 1. HAUT */
-        .frise-top {
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--frise-thickness);
-            background-size: var(--square-size) var(--square-size);
-            background-repeat: repeat-x;
-        }
-
-        /* 2. BAS */
-        .frise-bottom {
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: var(--frise-thickness);
-            background-size: var(--square-size) var(--square-size);
-            background-repeat: repeat-x;
-        }
-
-        /* 3. GAUCHE */
-        .frise-left {
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: var(--frise-thickness);
-            background-size: var(--square-size) var(--square-size);
-            background-repeat: repeat-y;
-        }
-
-        /* 4. DROITE */
-        .frise-right {
-            top: 0;
-            bottom: 0;
-            right: 0;
-            width: var(--frise-thickness);
-            background-size: var(--square-size) var(--square-size);
-            background-repeat: repeat-y;
-        }
-
-        /* En-tête / Logo */
+        /* HEADER BRANDING */
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 25px;
         }
 
         header img {
-            max-width: 180px;
+            max-width: 150px;
             height: auto;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             mix-blend-mode: multiply; /* Rend le fond du logo transparent */
         }
 
         header h1 {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: var(--brand-red);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 800;
         }
 
-        header p {
-            font-size: 0.9rem;
+        header .subtitle {
+            font-size: 0.85rem;
             color: #666;
             font-style: italic;
+            margin-top: 2px;
         }
 
-        /* Titres de sections */
+        header .location {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--brand-green);
+            font-weight: 700;
+            background: #eef4f1;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        /* BARE DE FILTRES / ONGLETS (STYLE KINŪ) */
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            position: sticky;
+            top: 10px;
+            z-index: 20;
+            background: rgba(252, 251, 247, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 8px 0;
+        }
+
+        .tab-btn {
+            border: 1.5px solid var(--brand-green);
+            background: transparent;
+            color: var(--brand-green);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: var(--brand-green);
+            color: #ffffff;
+        }
+
+        /* SECTIONS & ITEMS */
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--brand-green);
             text-transform: uppercase;
+            letter-spacing: 1px;
             border-bottom: 2px solid var(--brand-green);
-            padding-bottom: 5px;
-            margin: 30px 0 15px;
-            letter-spacing: 0.5px;
+            padding-bottom: 4px;
+            margin: 25px 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        /* En-têtes des colonnes de prix */
         .column-headers {
             display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            font-weight: bold;
-            font-size: 0.75rem;
-            color: #666;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+            gap: 12px;
+            font-size: 0.7rem;
+            color: #777;
+            font-weight: 700;
         }
 
         .column-headers span {
-            width: 70px;
+            width: 55px;
             text-align: right;
         }
 
-        /* Éléments du menu (Pizzas) */
+        /* FICHE PRODUIT */
         .item {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
+            padding: 12px 0;
             border-bottom: 1px dashed var(--border-color);
         }
 
@@ -160,7 +167,7 @@
 
         .item-name {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
             color: var(--text-color);
             flex: 1;
@@ -169,241 +176,207 @@
 
         .item-prices {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             font-weight: 700;
             color: var(--brand-red);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .item-prices span {
-            width: 70px;
+            width: 55px;
             text-align: right;
         }
 
         .item-desc {
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 3px;
+            font-size: 0.82rem;
+            color: #666;
+            margin-top: 4px;
         }
 
-        /* Éléments Boissons */
+        /* DRINKS SPECIFIC */
         .drink-item {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px dashed var(--border-color);
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .drink-price {
             color: var(--brand-red);
+            font-weight: 700;
         }
 
-        /* Bouton fixe d'appel en bas */
+        /* BOUTON FIXE BAS DE PAGE (CALL TO ACTION) */
         .footer-action {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background-color: #fff;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            padding: 12px 15px;
             text-align: center;
             z-index: 100;
         }
 
         .btn-call {
             display: block;
-            max-width: 500px;
+            max-width: 450px;
             margin: 0 auto;
             background-color: var(--brand-green);
-            color: #fff;
+            color: #ffffff;
             text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            font-size: 1rem;
+            padding: 13px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.25);
         }
     </style>
 </head>
 <body>
 
     <div class="menu-wrapper">
-        <!-- LES 4 FRISES DE DAMIER PUR -->
+        <!-- DEMIER ENCADREMENT -->
         <div class="damier-frise frise-top"></div>
         <div class="damier-frise frise-bottom"></div>
         <div class="damier-frise frise-left"></div>
         <div class="damier-frise frise-right"></div>
 
+        <!-- HEADER BRANDING -->
         <header>
             <img src="logo.jpg" alt="Portofino Logo">
             <h1>Portofino</h1>
-            <p>Since 1990 • By H. Salloub</p>
+            <div class="subtitle">Since 1990 • By H. Salloub</div>
+            <div class="location">📍 Abidjan</div>
         </header>
 
-        <!-- CLASSIQUES -->
-        <h2 class="section-title">Classiques</h2>
-        <div class="column-headers">
-            <span>Moyenne</span>
-            <span>Grande</span>
+        <!-- ONGLETS DE FILTRAGE INSTANTANÉ (STYLE KINŪ) -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('all')">Tout</button>
+            <button class="tab-btn" onclick="filterCategory('classiques')">Classiques</button>
+            <button class="tab-btn" onclick="filterCategory('specialites')">Spécialités</button>
+            <button class="tab-btn" onclick="filterCategory('boissons')">Boissons</button>
         </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Margherita</span>
-                <div class="item-prices"><span>7 500</span><span>8 500</span></div>
+        <!-- SECTION CLASSIQUES -->
+        <div class="menu-category" id="classiques">
+            <div class="section-title">
+                <span>Classiques</span>
+                <div class="column-headers">
+                    <span>Moy.</span>
+                    <span>Gde.</span>
+                </div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Reine</span>
-                <div class="item-prices"><span>8 000</span><span>9 000</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">Margherita</span>
+                    <div class="item-prices"><span>7 500</span><span>8 500</span></div>
+                </div>
+                <div class="item-desc">Sauce tomate, fromage, origan</div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Pepperoni</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">Reine</span>
+                    <div class="item-prices"><span>8 000</span><span>9 000</span></div>
+                </div>
+                <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Calabraise</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">Pepperoni</span>
+                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                </div>
+                <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, jambon, olives, champignons, origan</div>
         </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Royale</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+        <!-- SECTION SPÉCIALITÉS -->
+        <div class="menu-category" id="specialites">
+            <div class="section-title">
+                <span>Spécialités</span>
+                <div class="column-headers">
+                    <span>Moy.</span>
+                    <span>Gde.</span>
+                </div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, jambon, champignons, olives, origan</div>
-        </div>
 
-        <!-- SPÉCIALITÉS -->
-        <h2 class="section-title">Spécialités</h2>
-        <div class="column-headers">
-            <span>Moyenne</span>
-            <span>Grande</span>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">4 Fromages</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">4 Fromages</span>
+                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                </div>
+                <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
             </div>
-            <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Sojok</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">Portofino By H. Salloub</span>
+                    <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                </div>
+                <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, sojok, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Portofino By H. Salloub</span>
-                <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+            <div class="item">
+                <div class="item-main">
+                    <span class="item-name">Poulet BBQ</span>
+                    <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                </div>
+                <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue</div>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
         </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Poulet BBQ</span>
-                <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+        <!-- SECTION BOISSONS -->
+        <div class="menu-category" id="boissons">
+            <div class="section-title">
+                <span>Boissons</span>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue, origan</div>
-        </div>
 
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Mexicaine</span>
-                <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+            <div class="drink-item">
+                <span>Eau 0,5 L</span>
+                <span class="drink-price">500 FCFA</span>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Végétarienne</span>
-                <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+            <div class="drink-item">
+                <span>Coca-Cola / Fanta / Sprite</span>
+                <span class="drink-price">1 000 FCFA</span>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, poivrons, oignons, champignons, olives, origan</div>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Crevettes</span>
-                <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+            <div class="drink-item">
+                <span>Red Bull</span>
+                <span class="drink-price">2 000 FCFA</span>
             </div>
-            <div class="item-desc">Sauce tomate, fromage, crevettes, origan</div>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Reine aux Crevettes</span>
-                <div class="item-prices"><span>9 500</span><span>10 500</span></div>
-            </div>
-            <div class="item-desc">Sauce tomate, fromage, crevettes, champignons, olives, origan</div>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Fruits de Mer</span>
-                <div class="item-prices"><span>9 500</span><span>10 500</span></div>
-            </div>
-            <div class="item-desc">Sauce tomate, fromage, calamars, moules, crevettes, origan</div>
-        </div>
-
-        <div class="item">
-            <div class="item-main">
-                <span class="item-name">Saumon</span>
-                <div class="item-prices"><span>10 000</span><span>11 000</span></div>
-            </div>
-            <div class="item-desc">Sauce tomate, fromage, saumon, citron, crème fraîche, origan</div>
-        </div>
-
-        <!-- BOISSONS -->
-        <h2 class="section-title">Boissons</h2>
-
-        <div class="drink-item">
-            <span>Eau 0,5 L</span>
-            <span class="drink-price">500 FCFA</span>
-        </div>
-        <div class="drink-item">
-            <span>Eau 1 L</span>
-            <span class="drink-price">1 000 FCFA</span>
-        </div>
-        <div class="drink-item">
-            <span>Coca-Cola / Fanta / Sprite / Coca Zéro</span>
-            <span class="drink-price">1 000 FCFA</span>
-        </div>
-        <div class="drink-item">
-            <span>Ice Tea / Cody's</span>
-            <span class="drink-price">1 500 FCFA</span>
-        </div>
-        <div class="drink-item">
-            <span>Red Bull</span>
-            <span class="drink-price">2 000 FCFA</span>
         </div>
     </div>
 
-    <!-- BOUTON FIXE DE CONTACT -->
+    <!-- BOUTON FIXE DE COMMANDE -->
     <div class="footer-action">
         <a href="tel:+2250747005656" class="btn-call">📞 Commander au +225 07 47 00 56 56</a>
     </div>
 
+    <!-- SCRIPT INTERACTIF POUR LES ONGLETS -->
+    <script>
+        function filterCategory(cat) {
+            // Mise à jour des boutons actifs
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Affichage / Masquage des sections
+            const categories = document.querySelectorAll('.menu-category');
+            categories.forEach(sec => {
+                if (cat === 'all' || sec.id === cat) {
+                    sec.style.display = 'block';
+                } else {
+                    sec.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
