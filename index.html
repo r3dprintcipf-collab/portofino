@@ -121,18 +121,18 @@
             margin-bottom: 12px;
         }
 
-        /* LISTE DES PRODUITS ET LIGNES FINES */
+        /* LISTE DES PRODUITS ET LIGNES FINES - ESPACEMENT ACCRU */
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 11px 0;
+            padding: 15px 0; /* Plus d'espace vertical entre chaque élément */
             border-bottom: 1px solid var(--line-color);
         }
 
         .item-details { padding-right: 15px; }
         .item-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-color); }
-        .item-desc { font-size: 0.78rem; color: #666; margin-top: 2px; }
+        .item-desc { font-size: 0.78rem; color: #666; margin-top: 3px; line-height: 1.4; }
 
         .item-prices {
             display: flex;
@@ -166,7 +166,7 @@
         /* BOUTON DE COMMANDE EN BAS DE PAGE */
         .call-bar {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 55px;
             padding-bottom: 20px;
             width: 100%;
         }
@@ -199,13 +199,16 @@
         @media (max-width: 768px) {
             nav { padding: 30px 20px 15px; }
             .container { padding: 10px 20px 50px; }
-            .menu-grid { grid-template-columns: 1fr; gap: 0; } /* Supprime l'espace entre colonnes */
+            .menu-grid { grid-template-columns: 1fr; gap: 0; }
             .page-title { font-size: 3.5rem; margin-top: 28px; }
             .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
             
-            /* Supprime le décalage et l'en-tête superflu de la 2e colonne sur mobile */
             .right-column-header {
                 display: none;
+            }
+
+            .item-row {
+                padding: 14px 0; /* Espacement fluide sur mobile */
             }
 
             .btn-call {
@@ -392,7 +395,7 @@
                 </div>
 
                 <!-- SECTION BOISSONS -->
-                <h2 class="section-title" style="margin-top: 32px;">Boissons</h2>
+                <h2 class="section-title" style="margin-top: 36px;">Boissons</h2>
 
                 <div class="item-row">
                     <div class="item-details">
