@@ -164,6 +164,7 @@
             text-align: center;
             margin-top: 50px;
             padding-bottom: 20px;
+            width: 100%;
         }
 
         .btn-call {
@@ -174,13 +175,15 @@
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 14px 28px;
+            padding: 14px 24px;
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            white-space: nowrap; /* FORCE UNE SEULE LIGNE */
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: background-color 0.2s, transform 0.2s;
+            max-width: 100%;
         }
 
         .btn-call:hover {
@@ -190,11 +193,18 @@
 
         /* AJUSTEMENT SPÉCIFIQUE MOBILE */
         @media (max-width: 768px) {
-            nav { padding: 30px 28px 15px; }
-            .container { padding: 10px 28px 50px; }
+            nav { padding: 30px 20px 15px; }
+            .container { padding: 10px 20px 50px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
             .page-title { font-size: 3.5rem; margin-top: 28px; }
             .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
+            
+            /* Ajustement pour garantier le bouton sur une ligne sur petit écran */
+            .btn-call {
+                font-size: 0.78rem;
+                padding: 12px 14px;
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -409,7 +419,7 @@
 
         </div>
 
-        <!-- BOUTON DE COMMANDE EN BAS DU SITE -->
+        <!-- BOUTON DE COMMANDE SUR UNE SEULE LIGNE -->
         <div class="call-bar">
             <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
         </div>
