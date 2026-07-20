@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofino - Menu</title>
-    <!-- Google Fonts pour 'menu', 'Kalam' (style Pesto Fresco) + CDN Font pour 'Brittany Signature' -->
+    <!-- Google Fonts pour 'menu', 'Kalam' + CDN Font pour 'Brittany Signature' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 12px; /* Taille d'un carré */
+            --frise-size: 14px; /* Taille exacte d'un carré du damier */
         }
 
         * {
@@ -69,24 +69,25 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS (AJUSTÉE POUR 2 LIGNES) --- */
-        .damier {
+        /* --- CADRE DAMIER FIXE PARFAIT (INTERSECTIONS ET COINS CALIBRÉS) --- */
+        .damier-frame {
             position: fixed;
-            background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            /* Une épaisseur exacte de 2 carrés (28px) parfaitement raccordée sur les 4 côtés */
+            border: calc(var(--frise-size) * 2) solid var(--brand-red);
+            border-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%) 28 repeat;
             z-index: 1000;
             pointer-events: none;
         }
-
-        .damier-top { top: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-x; }
-        .damier-bottom { bottom: 0; left: 0; right: 0; height: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-x; }
-        .damier-left { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); left: 0; width: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-y; }
-        .damier-right { top: calc(var(--frise-size) * 2); bottom: calc(var(--frise-size) * 2); right: 0; width: calc(var(--frise-size) * 2); background-size: var(--frise-size) var(--frise-size); background-repeat: repeat-y; }
 
         /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 36px 24px 100px 24px;
+            padding: 45px 32px 100px 32px; /* Laisse de l'espace par rapport au damier fixe */
         }
 
         .menu-card {
@@ -341,23 +342,20 @@
 
         /* ADAPTATION ORDINATEUR */
         @media (min-width: 769px) {
-            .container { max-width: 1100px; padding: 45px 30px 60px; }
+            .container { max-width: 1100px; padding: 50px 40px 60px; }
             .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
             .btn-call { width: auto; max-width: none; animation: none; }
-            .damier { --frise-size: 14px; }
+            :root { --frise-size: 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- FRISE DAMIER FIXE SUR LES 4 CÔTÉS -->
-    <div class="damier damier-top"></div>
-    <div class="damier damier-bottom"></div>
-    <div class="damier damier-left"></div>
-    <div class="damier damier-right"></div>
+    <!-- CADRE DAMIER FIXE UNIFIÉ ET PARFAITEMENT ALIGNÉ -->
+    <div class="damier-frame"></div>
 
     <!-- CONTENEUR PRINCIPAL -->
     <div class="container">
