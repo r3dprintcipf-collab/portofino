@@ -95,26 +95,15 @@
             align-items: center;
         }
 
-        /* CONTENEUR DU LOGO AVEC MASQUE CIRCULAIRE PROPRE (ÉLIMINE LE CARRÉ BLANC) */
-        .logo-wrapper {
-            width: 165px;
-            height: 165px;
-            border-radius: 50%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            border: 3px solid #fff;
-            background-color: var(--card-bg);
-            margin: 0 auto;
-        }
-
+        /* LOGO INTÉGRAL SANS COUPURE ET SANS FOND BLANC */
         .header-brand img {
-            width: 115%;
-            height: 115%;
-            object-fit: cover;
+            max-width: 175px;
+            height: auto;
+            margin: 0 auto;
             display: block;
+            mix-blend-mode: multiply; /* Fusionne le blanc du JPG avec le fond crème de la carte */
+            background: transparent !important;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.06));
         }
 
         .brand-subtitle {
@@ -298,9 +287,9 @@
         @media (min-width: 769px) {
             .container { max-width: 1100px; padding: 45px 30px 60px; }
             .menu-card { padding: 50px 60px; }
-            .logo-wrapper { width: 190px; height: 190px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
+            .header-brand img { max-width: 195px; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
             .btn-call { width: auto; max-width: none; animation: none; }
             .damier { --frise-size: 14px; }
@@ -321,15 +310,13 @@
         <div class="menu-card animate-init" id="menuCard">
             <!-- EN-TÊTE -->
             <div class="header-brand">
-                <div class="logo-wrapper">
-                    <img src="logo.jpg" 
-                         alt="Logo Portofino - Pizzeria & Grill" 
-                         width="190" 
-                         height="190" 
-                         fetchpriority="high" 
-                         loading="eager" 
-                         decoding="async">
-                </div>
+                <img src="logo.jpg" 
+                     alt="Logo Portofino - Pizzeria & Grill" 
+                     width="195" 
+                     height="195" 
+                     fetchpriority="high" 
+                     loading="eager" 
+                     decoding="async">
                 <div class="brand-subtitle">By H. Salloub</div>
                 <h1 class="page-title">menu</h1>
             </div>
