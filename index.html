@@ -15,7 +15,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --border-width: 14px; /* Épaisseur du damier autour de la page */
+            --frise-size: 14px; /* Taille des carrés du damier */
         }
 
         * {
@@ -30,11 +30,51 @@
             color: var(--text-color);
             line-height: 1.6;
             margin: 0;
+            padding: 0;
+            position: relative;
             min-height: 100vh;
+        }
 
-            /* ENCADREMENT PARFAIT EN DAMIER SUR LES 4 CÔTÉS (SANS CHEVAUCHEMENT) */
-            border: var(--border-width) solid transparent;
-            border-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%) 14 repeat;
+        /* --- FRISE DAMIER PARFAITE SUR LES 4 CÔTÉS (SANS CHEVAUCHEMENT) --- */
+        .damier {
+            position: fixed;
+            background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
+            background-size: var(--frise-size) var(--frise-size);
+            z-index: 1000;
+        }
+
+        /* Haut et bas sur toute la largeur */
+        .damier-top {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--frise-size);
+            background-repeat: repeat-x;
+        }
+
+        .damier-bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--frise-size);
+            background-repeat: repeat-x;
+        }
+
+        /* Gauche et droite calés parfaitement entre haut et bas pour ne pas chevaucher */
+        .damier-left {
+            top: var(--frise-size);
+            bottom: var(--frise-size);
+            left: 0;
+            width: var(--frise-size);
+            background-repeat: repeat-y;
+        }
+
+        .damier-right {
+            top: var(--frise-size);
+            bottom: var(--frise-size);
+            right: 0;
+            width: var(--frise-size);
+            background-repeat: repeat-y;
         }
 
         /* NAVIGATION STYLE KINŪ */
@@ -42,7 +82,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
+            padding: 30px 50px 25px;
             font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -101,8 +141,8 @@
         }
 
         @media (max-width: 768px) {
-            nav { padding: 20px; }
-            .container { padding: 15px 15px 100px; }
+            nav { padding: 25px 20px 15px; }
+            .container { padding: 15px 20px 100px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
             .page-title { font-size: 3rem; }
         }
@@ -178,7 +218,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            z-index: 100;
+            z-index: 1001;
         }
 
         .btn-call {
@@ -203,6 +243,12 @@
     </style>
 </head>
 <body>
+
+    <!-- FRISE DAMIER FIXE PARFAITE SUR LES 4 CÔTÉS -->
+    <div class="damier damier-top"></div>
+    <div class="damier damier-bottom"></div>
+    <div class="damier damier-left"></div>
+    <div class="damier damier-right"></div>
 
     <!-- NAVIGATION STYLE KINŪ -->
     <nav>
