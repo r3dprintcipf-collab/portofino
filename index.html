@@ -119,10 +119,6 @@
             margin-bottom: 15px;
         }
 
-        .section-title.green {
-            color: var(--brand-green);
-        }
-
         /* LISTE DES PRODUITS ET LIGNES FINES */
         .item-row {
             display: flex;
@@ -237,10 +233,9 @@
 
         <div class="menu-grid">
             
-            <!-- COLONNE GAUCHE : CLASSIQUES ET DÉBUT SPÉCIALITÉS -->
+            <!-- COLONNE GAUCHE : TOUTES LES PIZZAS (PARTIE 1) -->
             <div>
-                <!-- CLASSIQUES -->
-                <h2 class="section-title">Classiques</h2>
+                <h2 class="section-title">Pizzas</h2>
                 
                 <div class="price-header">
                     <span>Moy.</span>
@@ -261,6 +256,14 @@
                         <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
                     </div>
                     <div class="item-prices"><span>8 000</span><span>9 000</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">4 Fromages</div>
+                        <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
+                    </div>
+                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                 </div>
 
                 <div class="item-row">
@@ -287,22 +290,6 @@
                     <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                 </div>
 
-                <!-- SPÉCIALITÉS (DEBUT) -->
-                <h2 class="section-title green" style="margin-top: 40px;">Spécialités</h2>
-
-                <div class="price-header">
-                    <span>Moy.</span>
-                    <span>Gde.</span>
-                </div>
-
-                <div class="item-row">
-                    <div class="item-details">
-                        <div class="item-name">4 Fromages</div>
-                        <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
-                    </div>
-                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
-                </div>
-
                 <div class="item-row">
                     <div class="item-details">
                         <div class="item-name">Sojok</div>
@@ -313,10 +300,19 @@
 
                 <div class="item-row">
                     <div class="item-details">
-                        <div class="item-name">Portofino By H. Salloub</div>
-                        <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
+                        <div class="item-name">Mexicaine</div>
+                        <div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div>
                     </div>
                     <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                </div>
+            </div>
+
+            <!-- COLONNE DROITE : PIZZAS (SUITE NATURELLE) PUIS BOISSONS -->
+            <div>
+                <!-- En-tête de prix aligné avec la colonne de gauche -->
+                <div class="price-header" style="margin-top: 55px;">
+                    <span>Moy.</span>
+                    <span>Gde.</span>
                 </div>
 
                 <div class="item-row">
@@ -329,19 +325,10 @@
 
                 <div class="item-row">
                     <div class="item-details">
-                        <div class="item-name">Mexicaine</div>
-                        <div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div>
+                        <div class="item-name">Portofino By H. Salloub</div>
+                        <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
                     </div>
                     <div class="item-prices"><span>9 000</span><span>10 000</span></div>
-                </div>
-            </div>
-
-            <!-- COLONNE DROITE : SUITE DES SPÉCIALITÉS (SANS TITRE SUITE) PUIS BOISSONS -->
-            <div>
-                <!-- EN-TÊTE DE PRIX ALIGNÉ EN HAUT DE COLONNE -->
-                <div class="price-header" style="margin-top: 55px;">
-                    <span>Moy.</span>
-                    <span>Gde.</span>
                 </div>
 
                 <div class="item-row">
@@ -385,7 +372,7 @@
                 </div>
 
                 <!-- SECTION BOISSONS REGROUPÉES PAR PRIX -->
-                <h2 class="section-title" style="margin-top: 50px;">Boissons</h2>
+                <h2 class="section-title" style="margin-top: 45px;">Boissons</h2>
 
                 <div class="item-row">
                     <div class="item-details">
