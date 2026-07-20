@@ -48,7 +48,7 @@
         .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
         .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
 
-        /* NAVIGATION - MARGES AGRANDIES / MOINS DE PROXIMITÉ AVEC LE DAMIER */
+        /* NAVIGATION - MARGES AGRANDIES PAR RAPPORT AU DAMIER */
         nav {
             display: flex;
             justify-content: space-between;
@@ -64,7 +64,7 @@
         .nav-links a, .nav-right a { color: var(--text-color); text-decoration: none; transition: color 0.2s; }
         .nav-links a:hover, .nav-right a:hover { color: var(--brand-red); }
 
-        /* CONTENEUR PRINCIPAL - MARGES INTERNES (PADDING) SÉCURISÉES */
+        /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -111,14 +111,6 @@
             gap: 60px;
             margin-top: 20px;
             align-items: start;
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 30px 28px 15px; }
-            .container { padding: 10px 28px 50px; }
-            .menu-grid { grid-template-columns: 1fr; gap: 40px; }
-            .page-title { font-size: 3.5rem; margin-top: 28px; }
-            .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
         }
 
         /* TITRES DE SECTIONS */
@@ -195,6 +187,15 @@
             background-color: var(--brand-red);
             transform: translateY(-2px);
         }
+
+        /* AJUSTEMENT SPÉCIFIQUE MOBILE */
+        @media (max-width: 768px) {
+            nav { padding: 30px 28px 15px; }
+            .container { padding: 10px 28px 50px; }
+            .menu-grid { grid-template-columns: 1fr; gap: 40px; }
+            .page-title { font-size: 3.5rem; margin-top: 28px; }
+            .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
+        }
     </style>
 </head>
 <body>
@@ -220,9 +221,15 @@
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
         
-        <!-- EN-TÊTE : LOGO + SUBTITLE + TITRE "MENU" -->
+        <!-- EN-TÊTE OPTIMISÉ CHARGEMENT RAPIDE -->
         <div class="header-brand">
-            <img src="logo.jpg" alt="Portofino Logo">
+            <img src="logo.jpg" 
+                 alt="Portofino Logo" 
+                 width="150" 
+                 height="150" 
+                 fetchpriority="high" 
+                 loading="eager" 
+                 decoding="async">
             <div class="brand-subtitle">By H. Salloub</div>
             <h1 class="page-title">menu</h1>
         </div>
@@ -410,34 +417,4 @@
     </div>
 
 </body>
-</html>/* AJOUT D'ESPACE PAR RAPPORT AU DAMIER SUR LA NAVIGATION ET LE CONTENEUR */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 35px 45px 20px; /* Plus d'espace sous la frise du haut */
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 45px 60px; /* Marges intérieures accrues sur les côtés */
-}
-
-/* AJUSTEMENT SPÉCIFIQUE MOBILE */
-@media (max-width: 768px) {
-    nav { 
-        padding: 30px 28px 15px; /* Éloigne la nav des bords haut et côtés */
-    }
-    .container { 
-        padding: 10px 28px 50px; /* Éloigne le contenu des bords gauche/droite */
-    }
-    .menu-grid { 
-        grid-template-columns: 1fr; 
-        gap: 35px; 
-    }
-}
+</html>
