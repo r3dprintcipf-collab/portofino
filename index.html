@@ -18,7 +18,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 14px; /* Taille d'un carré */
+            --frise-size: 14px; /* Taille exacte d'un carré */
         }
 
         * {
@@ -69,19 +69,23 @@
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- FRISE DAMIER FIXE 100% CARRÉS ROUGES ET BLANCS PARfaits --- */
-        .damier {
+        /* --- CADRE DAMIER FIXE UNIFIÉ EN PLEIN ÉCRAN (ZÉRO DÉFAUT AUX COINS) --- */
+        .damier-frame {
             position: fixed;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
-            background-size: 28px 28px;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: 1000;
             pointer-events: none;
+            /* Motif SVG complet couvrant tout l'écran avec une bordure creusée exactement de 28px (2 carrés) */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
+            background-size: 28px 28px;
+            -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 28px; /* Épaisseur exacte de la frise sur les 4 côtés */
         }
-
-        .damier-top { top: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
-        .damier-bottom { bottom: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
-        .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
-        .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; }
 
         /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
         .container {
@@ -350,11 +354,8 @@
 </head>
 <body>
 
-    <!-- FRISE DAMIER FIXE SUR LES 4 CÔTÉS -->
-    <div class="damier damier-top"></div>
-    <div class="damier damier-bottom"></div>
-    <div class="damier damier-left"></div>
-    <div class="damier damier-right"></div>
+    <!-- CADRE DAMIER FIXE UNIFIÉ GLOBAL (SANS AUCUN DÉCALAGE AUX COINS) -->
+    <div class="damier-frame"></div>
 
     <!-- CONTENEUR PRINCIPAL -->
     <div class="container">
