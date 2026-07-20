@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofino - Menu Digital</title>
+    <title>Portofino - Menu</title>
+    <!-- Police manuscrite élégante style Kinū -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #fcfbf7;
-            --text-color: #1c1c1c;
+            --bg-color: #f7f3e9; /* Fond crème identique à Kinū */
+            --text-color: #1a1a1a;
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
-            --border-color: #e5e0d8;
-            --frise-thickness: 24px;
-            --square-size: 12px;
+            --line-color: #e2dacb;
+            --frise-size: 14px;
         }
 
         * {
@@ -25,358 +28,342 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.5;
-            padding: 15px 10px 90px;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
         }
 
-        /* CONTENEUR PRINCIPAL STYLE KINŪ */
-        .menu-wrapper {
-            max-width: 520px; /* Format resserré style app mobile */
-            margin: 0 auto;
-            background-color: var(--bg-color);
-            padding: 40px 25px 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        /* --- FRISE DAMIER PUR SUR LES 4 CÔTÉS --- */
-        .damier-frise {
-            position: absolute;
+        /* FRISE DAMIER DISCRÈTE TOUT EN HAUT ET EN BAS */
+        .top-damier, .bottom-damier {
+            width: 100%;
+            height: var(--frise-size);
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
-            z-index: 10;
-        }
-        .frise-top { top: 0; left: 0; right: 0; height: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-x; }
-        .frise-bottom { bottom: 0; left: 0; right: 0; height: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-x; }
-        .frise-left { top: 0; bottom: 0; left: 0; width: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-y; }
-        .frise-right { top: 0; bottom: 0; right: 0; width: var(--frise-thickness); background-size: var(--square-size) var(--square-size); background-repeat: repeat-y; }
-
-        /* HEADER BRANDING */
-        header {
-            text-align: center;
-            margin-bottom: 25px;
+            background-size: var(--frise-size) var(--frise-size);
+            background-repeat: repeat-x;
         }
 
-        header img {
-            max-width: 150px;
+        /* NAVIGATION STYLE KINŪ (Haut de page) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a, .nav-right a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-right a:hover {
+            color: var(--brand-red);
+        }
+
+        /* CONTENEUR PRINCIPAL PLEIN ÉCRAN ÉPURÉ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 50px 80px;
+        }
+
+        /* EN-TÊTE / LOGO ET TITRE */
+        .header-brand {
+            margin-bottom: 40px;
+        }
+
+        .header-brand img {
+            max-width: 130px;
             height: auto;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             mix-blend-mode: multiply; /* Rend le fond du logo transparent */
         }
 
-        header h1 {
-            font-size: 1.7rem;
-            color: var(--brand-red);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 800;
-        }
-
-        header .subtitle {
-            font-size: 0.85rem;
-            color: #666;
-            font-style: italic;
-            margin-top: 2px;
-        }
-
-        header .location {
-            display: inline-block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
             color: var(--brand-green);
-            font-weight: 700;
-            background: #eef4f1;
-            padding: 3px 10px;
-            border-radius: 12px;
-            margin-top: 8px;
+            line-height: 1;
+            margin-bottom: 10px;
         }
 
-        /* BARE DE FILTRES / ONGLETS (STYLE KINŪ) */
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 25px;
-            position: sticky;
-            top: 10px;
-            z-index: 20;
-            background: rgba(252, 251, 247, 0.95);
-            backdrop-filter: blur(5px);
-            padding: 8px 0;
+        /* GRILLE EN COLONNES COMME SUR LA CAPTURE KINŪ */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 30px;
         }
 
-        .tab-btn {
-            border: 1.5px solid var(--brand-green);
-            background: transparent;
-            color: var(--brand-green);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        @media (max-width: 768px) {
+            nav { padding: 20px; }
+            .container { padding: 20px; }
+            .menu-grid { grid-template-columns: 1fr; gap: 40px; }
+            .page-title { font-size: 3rem; }
         }
 
-        .tab-btn.active, .tab-btn:hover {
-            background-color: var(--brand-green);
-            color: #ffffff;
-        }
-
-        /* SECTIONS & ITEMS */
+        /* TITRES DE SECTIONS STYLE MANUSCRIT */
         .section-title {
-            font-size: 1.1rem;
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            color: var(--brand-red);
+            margin-bottom: 15px;
+        }
+
+        .section-title.green {
             color: var(--brand-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid var(--brand-green);
-            padding-bottom: 4px;
-            margin: 25px 0 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
         }
 
-        .column-headers {
-            display: flex;
-            gap: 12px;
-            font-size: 0.7rem;
-            color: #777;
-            font-weight: 700;
-        }
-
-        .column-headers span {
-            width: 55px;
-            text-align: right;
-        }
-
-        /* FICHE PRODUIT */
-        .item {
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .item-main {
+        /* LISTE DES PRODUITS ET LIGNES FINES */
+        .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        .item-details {
+            padding-right: 20px;
         }
 
         .item-name {
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.95rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--text-color);
-            flex: 1;
-            padding-right: 10px;
+        }
+
+        .item-desc {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 2px;
         }
 
         .item-prices {
             display: flex;
-            gap: 12px;
-            font-weight: 700;
-            color: var(--brand-red);
-            font-size: 0.9rem;
+            gap: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            white-space: nowrap;
         }
 
         .item-prices span {
-            width: 55px;
+            min-width: 45px;
             text-align: right;
         }
 
-        .item-desc {
-            font-size: 0.82rem;
-            color: #666;
-            margin-top: 4px;
-        }
-
-        /* DRINKS SPECIFIC */
-        .drink-item {
+        .price-header {
             display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .drink-price {
-            color: var(--brand-red);
+            justify-content: flex-end;
+            gap: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+            padding-bottom: 5px;
             font-weight: 700;
         }
 
-        /* BOUTON FIXE BAS DE PAGE (CALL TO ACTION) */
-        .footer-action {
+        .price-header span {
+            min-width: 45px;
+            text-align: right;
+        }
+
+        /* BOUTON D'APPEL FIXE ET DISCRET */
+        .call-bar {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-            padding: 12px 15px;
-            text-align: center;
+            bottom: 25px;
+            right: 25px;
             z-index: 100;
         }
 
         .btn-call {
-            display: block;
-            max-width: 450px;
-            margin: 0 auto;
             background-color: var(--brand-green);
-            color: #ffffff;
+            color: #fff;
             text-decoration: none;
-            padding: 13px 20px;
-            border-radius: 25px;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.95rem;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(27, 77, 62, 0.25);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-call:hover {
+            background-color: var(--brand-red);
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-wrapper">
-        <!-- DEMIER ENCADREMENT -->
-        <div class="damier-frise frise-top"></div>
-        <div class="damier-frise frise-bottom"></div>
-        <div class="damier-frise frise-left"></div>
-        <div class="damier-frise frise-right"></div>
+    <!-- FRISE DAMIER SUPÉRIEURE -->
+    <div class="top-damier"></div>
 
-        <!-- HEADER BRANDING -->
-        <header>
+    <!-- NAVIGATION STYLE KINŪ -->
+    <nav>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <a href="tel:+2250747005656">Contact</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+    </nav>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="container">
+        
+        <div class="header-brand">
             <img src="logo.jpg" alt="Portofino Logo">
-            <h1>Portofino</h1>
-            <div class="subtitle">Since 1990 • By H. Salloub</div>
-            <div class="location">📍 Abidjan</div>
-        </header>
-
-        <!-- ONGLETS DE FILTRAGE INSTANTANÉ (STYLE KINŪ) -->
-        <div class="category-tabs">
-            <button class="tab-btn active" onclick="filterCategory('all')">Tout</button>
-            <button class="tab-btn" onclick="filterCategory('classiques')">Classiques</button>
-            <button class="tab-btn" onclick="filterCategory('specialites')">Spécialités</button>
-            <button class="tab-btn" onclick="filterCategory('boissons')">Boissons</button>
+            <h1 class="page-title">menu</h1>
         </div>
 
-        <!-- SECTION CLASSIQUES -->
-        <div class="menu-category" id="classiques">
-            <div class="section-title">
-                <span>Classiques</span>
-                <div class="column-headers">
+        <div class="menu-grid">
+            
+            <!-- COLONNE GAUCHE : CLASSIQUES -->
+            <div>
+                <h2 class="section-title">Classiques</h2>
+                
+                <div class="price-header">
                     <span>Moy.</span>
                     <span>Gde.</span>
                 </div>
-            </div>
 
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">Margherita</span>
-                    <div class="item-prices"><span>7 500</span><span>8 500</span></div>
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Margherita</div>
+                        <div class="item-desc">Sauce tomate, fromage, origan</div>
+                    </div>
+                    <div class="item-prices"><span>7500</span><span>8500</span></div>
                 </div>
-                <div class="item-desc">Sauce tomate, fromage, origan</div>
-            </div>
 
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">Reine</span>
-                    <div class="item-prices"><span>8 000</span><span>9 000</span></div>
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Reine</div>
+                        <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
+                    </div>
+                    <div class="item-prices"><span>8000</span><span>9000</span></div>
                 </div>
-                <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
-            </div>
 
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">Pepperoni</span>
-                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Pepperoni</div>
+                        <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
+                    </div>
+                    <div class="item-prices"><span>8500</span><span>9500</span></div>
                 </div>
-                <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
-            </div>
-        </div>
 
-        <!-- SECTION SPÉCIALITÉS -->
-        <div class="menu-category" id="specialites">
-            <div class="section-title">
-                <span>Spécialités</span>
-                <div class="column-headers">
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Calabraise</div>
+                        <div class="item-desc">Sauce tomate, fromage, jambon, olives, champignons</div>
+                    </div>
+                    <div class="item-prices"><span>8500</span><span>9500</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Royale</div>
+                        <div class="item-desc">Sauce tomate, fromage, jambon, champignons, olives</div>
+                    </div>
+                    <div class="item-prices"><span>8500</span><span>9500</span></div>
+                </div>
+            </div>
+
+            <!-- COLONNE DROITE : SPÉCIALITÉS & BOISSONS -->
+            <div>
+                <h2 class="section-title green">Spécialités</h2>
+                
+                <div class="price-header">
                     <span>Moy.</span>
                     <span>Gde.</span>
                 </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">4 Fromages</div>
+                        <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
+                    </div>
+                    <div class="item-prices"><span>8500</span><span>9500</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Portofino By H. Salloub</div>
+                        <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
+                    </div>
+                    <div class="item-prices"><span>9000</span><span>10000</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Poulet BBQ</div>
+                        <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, BBQ</div>
+                    </div>
+                    <div class="item-prices"><span>9000</span><span>10000</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Saumon</div>
+                        <div class="item-desc">Sauce tomate, fromage, saumon, citron, crème fraîche</div>
+                    </div>
+                    <div class="item-prices"><span>10000</span><span>11000</span></div>
+                </div>
+
+                <!-- SECTION BOISSONS JUSTE EN DESSOUS -->
+                <h2 class="section-title" style="margin-top: 40px;">Boissons</h2>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Eau 0,5 L</div>
+                    </div>
+                    <div class="item-prices"><span>500</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Coca-Cola / Fanta / Sprite</div>
+                    </div>
+                    <div class="item-prices"><span>1000</span></div>
+                </div>
+
+                <div class="item-row">
+                    <div class="item-details">
+                        <div class="item-name">Red Bull</div>
+                    </div>
+                    <div class="item-prices"><span>2000</span></div>
+                </div>
+
             </div>
 
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">4 Fromages</span>
-                    <div class="item-prices"><span>8 500</span><span>9 500</span></div>
-                </div>
-                <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
-            </div>
-
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">Portofino By H. Salloub</span>
-                    <div class="item-prices"><span>9 000</span><span>10 000</span></div>
-                </div>
-                <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
-            </div>
-
-            <div class="item">
-                <div class="item-main">
-                    <span class="item-name">Poulet BBQ</span>
-                    <div class="item-prices"><span>9 000</span><span>10 000</span></div>
-                </div>
-                <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue</div>
-            </div>
         </div>
 
-        <!-- SECTION BOISSONS -->
-        <div class="menu-category" id="boissons">
-            <div class="section-title">
-                <span>Boissons</span>
-            </div>
-
-            <div class="drink-item">
-                <span>Eau 0,5 L</span>
-                <span class="drink-price">500 FCFA</span>
-            </div>
-            <div class="drink-item">
-                <span>Coca-Cola / Fanta / Sprite</span>
-                <span class="drink-price">1 000 FCFA</span>
-            </div>
-            <div class="drink-item">
-                <span>Red Bull</span>
-                <span class="drink-price">2 000 FCFA</span>
-            </div>
-        </div>
     </div>
 
-    <!-- BOUTON FIXE DE COMMANDE -->
-    <div class="footer-action">
-        <a href="tel:+2250747005656" class="btn-call">📞 Commander au +225 07 47 00 56 56</a>
+    <!-- BOUTON D'APPEL FLOTTANT DISCRET -->
+    <div class="call-bar">
+        <a href="tel:+2250747005656" class="btn-call">📞 Commander</a>
     </div>
 
-    <!-- SCRIPT INTERACTIF POUR LES ONGLETS -->
-    <script>
-        function filterCategory(cat) {
-            // Mise à jour des boutons actifs
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+    <!-- FRISE DAMIER INFÉRIEURE -->
+    <div class="bottom-damier"></div>
 
-            // Affichage / Masquage des sections
-            const categories = document.querySelectorAll('.menu-category');
-            categories.forEach(sec => {
-                if (cat === 'all' || sec.id === cat) {
-                    sec.style.display = 'block';
-                } else {
-                    sec.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
