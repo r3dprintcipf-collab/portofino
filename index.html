@@ -11,9 +11,9 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --border-color: #e5e0d8;
-            /* Dimensions exactes de la frise */
-            --frise-thickness: 20px;
-            --square-size: 10px;
+            /* Dimensions ajustées pour des carrés plus grands et sans lignes autour */
+            --frise-thickness: 28px; /* Hauteur/largeur des bandes */
+            --square-size: 14px;    /* Taille agrandie des carrés */
         }
 
         * {
@@ -35,71 +35,58 @@
             max-width: 620px;
             margin: 0 auto;
             background-color: var(--bg-color);
-            padding: 35px 30px; /* Espace intérieur pour ne pas coller aux frises */
+            padding: 40px 35px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
 
-        /* --- LE MOTIF DE DAMIER UNIFIÉ --- */
+        /* --- FRISE DAMIER PUR (SANS BORDURES/LIGNES ROUGES) --- */
         .damier-frise {
             position: absolute;
             background-color: transparent;
-            background-image:
-                linear-gradient(var(--brand-red) 1px, transparent 1px),
-                linear-gradient(to top, var(--brand-red) 1px, transparent 1px),
-                repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
-            background-size: 100% 1px, 100% 1px, var(--square-size) var(--square-size);
-            background-position: 0 0, 0 100%, center center;
+            background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
             z-index: 10;
         }
 
-        /* 1. FRISE HAUT */
+        /* 1. HAUT */
         .frise-top {
             top: 0;
             left: 0;
             right: 0;
             height: var(--frise-thickness);
+            background-size: var(--square-size) var(--square-size);
             background-repeat: repeat-x;
-            border-top: 1px solid var(--brand-red);
-            border-bottom: 1px solid var(--brand-red);
         }
 
-        /* 2. FRISE BAS */
+        /* 2. BAS */
         .frise-bottom {
             bottom: 0;
             left: 0;
             right: 0;
             height: var(--frise-thickness);
+            background-size: var(--square-size) var(--square-size);
             background-repeat: repeat-x;
-            border-top: 1px solid var(--brand-red);
-            border-bottom: 1px solid var(--brand-red);
         }
 
-        /* 3. FRISE GAUCHE */
+        /* 3. GAUCHE */
         .frise-left {
             top: 0;
             bottom: 0;
             left: 0;
             width: var(--frise-thickness);
+            background-size: var(--square-size) var(--square-size);
             background-repeat: repeat-y;
-            border-left: 1px solid var(--brand-red);
-            border-right: 1px solid var(--brand-red);
-            background-size: 1px 100%, 1px 100%, var(--square-size) var(--square-size);
-            background-position: 0 0, 100% 0, center center;
         }
 
-        /* 4. FRISE DROITE */
+        /* 4. DROITE */
         .frise-right {
             top: 0;
             bottom: 0;
             right: 0;
             width: var(--frise-thickness);
+            background-size: var(--square-size) var(--square-size);
             background-repeat: repeat-y;
-            border-left: 1px solid var(--brand-red);
-            border-right: 1px solid var(--brand-red);
-            background-size: 1px 100%, 1px 100%, var(--square-size) var(--square-size);
-            background-position: 0 0, 100% 0, center center;
         }
 
         /* En-tête / Logo */
@@ -114,7 +101,7 @@
             max-width: 180px;
             height: auto;
             margin-bottom: 10px;
-            mix-blend-mode: multiply; /* Rend le carré blanc du logo transparent */
+            mix-blend-mode: multiply; /* Rend le fond du logo transparent */
         }
 
         header h1 {
@@ -242,7 +229,7 @@
 <body>
 
     <div class="menu-wrapper">
-        <!-- LES 4 FRISES DE DAMIER (HAUT, BAS, GAUCHE, DROITE) -->
+        <!-- LES 4 FRISES DE DAMIER PUR -->
         <div class="damier-frise frise-top"></div>
         <div class="damier-frise frise-bottom"></div>
         <div class="damier-frise frise-left"></div>
