@@ -17,32 +17,34 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 14px; /* Taille des carrés du damier */
+            --frise-size: 12px; /* Damier légèrement plus fin et élégant sur mobile */
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.5;
             margin: 0;
             padding: 0;
             position: relative;
             min-height: 100vh;
         }
 
-        /* --- FRISE DAMIER SUR LES 4 CÔTÉS --- */
+        /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS --- */
         .damier {
             position: fixed;
             background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
             background-size: var(--frise-size) var(--frise-size);
             z-index: 1000;
+            pointer-events: none;
         }
 
         .damier-top { top: 0; left: 0; right: 0; height: var(--frise-size); background-repeat: repeat-x; }
@@ -50,170 +52,178 @@
         .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
         .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
 
-        /* CONTENEUR PRINCIPAL */
+        /* CONTENEUR PRINCIPAL OPTIMISÉ MOBILE */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 45px 60px;
+            padding: 22px 18px 80px 18px; /* Marges réduites et espace bas pour le bouton fixe */
         }
 
-        /* EN-TÊTE : LOGO + SUBTITLE + TITRE "MENU" */
+        /* EN-TÊTE MOBILE-FIRST */
         .header-brand {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .header-brand img {
-            max-width: 150px;
+            max-width: 120px; /* Logo ajusté pour mobile */
             height: auto;
             margin: 0 auto;
             display: block;
             mix-blend-mode: multiply;
         }
 
-        /* SIGNATURE : TAILLE JUSTE MILIEU (1.8rem) */
         .brand-subtitle {
             font-family: 'Brittany Signature', cursive;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--brand-red);
             line-height: 1;
-            margin-top: 18px;
+            margin-top: 12px;
             margin-bottom: 0;
             text-align: center;
             white-space: nowrap;
         }
 
-        /* TITRE MENU AGRANDI ET PLUS ESPACÉ */
         .page-title {
             font-family: 'Caveat', cursive;
-            font-size: 4.2rem;
+            font-size: 3.5rem;
             color: var(--brand-green);
             line-height: 1;
-            margin-top: 30px;
+            margin-top: 18px;
         }
 
-        /* GRILLE EN COLONNES ALIGNÉES */
+        /* GRILLE MOBILE : UNE SEULE COLONNE FLUIDE */
         .menu-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 20px;
-            align-items: start;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 10px;
         }
 
         /* TITRES DE SECTIONS */
         .section-title {
             font-family: 'Caveat', cursive;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: var(--brand-red);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            margin-top: 10px;
         }
 
-        /* LISTE DES PRODUITS ET LIGNES FINES AVEC EFFET INTERACTIF */
+        /* LIGNES PRODUITS TACTILES */
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 15px 10px;
+            padding: 12px 6px;
             border-bottom: 1px solid var(--line-color);
-            border-radius: 6px;
-            transition: background-color 0.2s ease, transform 0.15s ease;
         }
 
-        .item-row:hover {
-            background-color: rgba(168, 35, 41, 0.04);
-            transform: scale(1.005);
+        .item-details { 
+            padding-right: 12px; 
+            flex-grow: 1;
         }
-
-        .item-details { padding-right: 15px; }
-        .item-name { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-color); }
-        .item-desc { font-size: 0.78rem; color: #666; margin-top: 3px; line-height: 1.4; }
+        
+        .item-name { 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.3px; 
+            color: var(--text-color); 
+        }
+        
+        .item-desc { 
+            font-size: 0.75rem; 
+            color: #555; 
+            margin-top: 2px; 
+            line-height: 1.35; 
+        }
 
         .item-prices {
             display: flex;
-            gap: 20px;
-            font-size: 0.85rem;
+            gap: 14px;
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--brand-red);
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .item-prices span { min-width: 45px; text-align: right; }
+        .item-prices span { 
+            min-width: 42px; 
+            text-align: right; 
+        }
 
         .price-header {
             display: flex;
             justify-content: flex-end;
-            gap: 20px;
-            font-size: 0.7rem;
+            gap: 14px;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #888;
-            padding-bottom: 5px;
-            padding-right: 10px;
+            letter-spacing: 0.8px;
+            color: #777;
+            padding-bottom: 4px;
             font-weight: 700;
         }
 
-        .price-header span { min-width: 45px; text-align: right; }
-
-        .right-column-header {
-            margin-top: 52px;
+        .price-header span { 
+            min-width: 42px; 
+            text-align: right; 
         }
 
-        /* BOUTON DE COMMANDE EN BAS DE PAGE */
+        .right-column-header {
+            display: none; /* Inutile sur mobile car les prix ont leur en-tête de section direct */
+        }
+
+        /* BOUTON DE COMMANDE FLOTTANT EN BAS POUR MOBILE */
         .call-bar {
+            position: fixed;
+            bottom: 16px;
+            left: 0;
+            right: 0;
             text-align: center;
-            margin-top: 55px;
-            padding-bottom: 20px;
-            width: 100%;
+            z-index: 999;
+            padding: 0 16px;
+            pointer-events: none;
         }
 
         .btn-call {
+            pointer-events: auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 14px 24px;
-            border-radius: 30px;
-            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 35px;
+            font-size: 0.92rem;
             font-weight: 700;
             letter-spacing: 0.3px;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: background-color 0.2s, transform 0.2s;
-            max-width: 100%;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 380px;
+            transition: transform 0.1s ease, background-color 0.2s ease;
         }
 
-        .btn-call:hover {
-            background-color: var(--brand-red);
-            transform: translateY(-2px);
+        .btn-call:active {
+            transform: scale(0.97);
+            background-color: #14372c;
         }
 
-        /* AJUSTEMENT SPÉCIFIQUE MOBILE */
-        @media (max-width: 768px) {
-            .container { padding: 30px 20px 50px; }
-            .menu-grid { grid-template-columns: 1fr; gap: 0; }
-            .page-title { font-size: 3.5rem; margin-top: 25px; }
-            .brand-subtitle { font-size: 1.5rem; margin-top: 14px; }
-            
-            .right-column-header {
-                display: none;
-            }
-
-            .item-row {
-                padding: 14px 5px;
-            }
-
-            .btn-call {
-                font-size: 0.78rem;
-                padding: 12px 14px;
-                gap: 5px;
-            }
+        /* ADAPTATION ORDINATEUR (Si ouvert sur PC par accident) */
+        @media (min-width: 769px) {
+            .container { max-width: 1100px; padding: 40px 45px 60px; }
+            .menu-grid { grid-template-columns: 1fr 1fr; gap: 50px; }
+            .right-column-header { display: flex; }
+            .header-brand img { max-width: 150px; }
+            .call-bar { position: static; margin-top: 50px; padding: 0; }
+            .btn-call { width: auto; max-width: none; }
+            .damier { --frise-size: 14px; }
         }
     </style>
 </head>
@@ -228,7 +238,7 @@
     <!-- CONTENU PRINCIPAL -->
     <div class="container">
         
-        <!-- EN-TÊTE OPTIMISÉ CHARGEMENT RAPIDE -->
+        <!-- EN-TÊTE -->
         <div class="header-brand">
             <img src="logo.jpg" 
                  alt="Logo Portofino - Pizzeria & Grill" 
@@ -243,7 +253,7 @@
 
         <div class="menu-grid">
             
-            <!-- COLONNE GAUCHE : 8 PIZZAS -->
+            <!-- COLONNE GAUCHE (ou bloc unique sur mobile) : PIZZAS 1 -->
             <div>
                 <h2 class="section-title">Pizzas</h2>
                 
@@ -317,7 +327,7 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : 7 PIZZAS + BOISSONS -->
+            <!-- COLONNE DROITE : SUITE PIZZAS + BOISSONS -->
             <div>
                 <div class="price-header right-column-header">
                     <span>Moy.</span>
@@ -381,7 +391,7 @@
                 </div>
 
                 <!-- SECTION BOISSONS -->
-                <h2 class="section-title" style="margin-top: 36px;">Boissons</h2>
+                <h2 class="section-title" style="margin-top: 32px;">Boissons</h2>
 
                 <div class="item-row">
                     <div class="item-details">
@@ -423,7 +433,7 @@
 
         </div>
 
-        <!-- BOUTON DE COMMANDE EN BAS -->
+        <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE -->
         <div class="call-bar">
             <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
         </div>
