@@ -48,7 +48,7 @@
         .damier-left { top: var(--frise-size); bottom: var(--frise-size); left: 0; width: var(--frise-size); background-repeat: repeat-y; }
         .damier-right { top: var(--frise-size); bottom: var(--frise-size); right: 0; width: var(--frise-size); background-repeat: repeat-y; }
 
-        /* NAVIGATION - MARGES AGRANDIES PAR RAPPORT AU DAMIER */
+        /* NAVIGATION */
         nav {
             display: flex;
             justify-content: space-between;
@@ -159,6 +159,10 @@
 
         .price-header span { min-width: 45px; text-align: right; }
 
+        .right-column-header {
+            margin-top: 52px;
+        }
+
         /* BOUTON DE COMMANDE EN BAS DE PAGE */
         .call-bar {
             text-align: center;
@@ -180,7 +184,7 @@
             font-size: 0.9rem;
             font-weight: 700;
             letter-spacing: 0.3px;
-            white-space: nowrap; /* FORCE UNE SEULE LIGNE */
+            white-space: nowrap;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: background-color 0.2s, transform 0.2s;
             max-width: 100%;
@@ -195,11 +199,15 @@
         @media (max-width: 768px) {
             nav { padding: 30px 20px 15px; }
             .container { padding: 10px 20px 50px; }
-            .menu-grid { grid-template-columns: 1fr; gap: 40px; }
+            .menu-grid { grid-template-columns: 1fr; gap: 0; } /* Supprime l'espace entre colonnes */
             .page-title { font-size: 3.5rem; margin-top: 28px; }
             .brand-subtitle { font-size: 1.8rem; margin-top: 18px; }
             
-            /* Ajustement pour garantier le bouton sur une ligne sur petit écran */
+            /* Supprime le décalage et l'en-tête superflu de la 2e colonne sur mobile */
+            .right-column-header {
+                display: none;
+            }
+
             .btn-call {
                 font-size: 0.78rem;
                 padding: 12px 14px;
@@ -322,7 +330,7 @@
 
             <!-- COLONNE DROITE : 7 PIZZAS + BOISSONS -->
             <div>
-                <div class="price-header" style="margin-top: 52px;">
+                <div class="price-header right-column-header">
                     <span>Moy.</span>
                     <span>Gde.</span>
                 </div>
