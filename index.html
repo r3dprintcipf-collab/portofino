@@ -15,7 +15,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 14px;
+            --border-width: 14px; /* Épaisseur du damier autour de la page */
         }
 
         * {
@@ -29,17 +29,12 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 0;
             margin: 0;
-        }
+            min-height: 100vh;
 
-        /* FRISE DAMIER DISCRÈTE TOUT EN HAUT ET EN BAS */
-        .top-damier, .bottom-damier {
-            width: 100%;
-            height: var(--frise-size);
-            background-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%);
-            background-size: var(--frise-size) var(--frise-size);
-            background-repeat: repeat-x;
+            /* ENCADREMENT PARFAIT EN DAMIER SUR LES 4 CÔTÉS (SANS CHEVAUCHEMENT) */
+            border: var(--border-width) solid transparent;
+            border-image: repeating-conic-gradient(var(--brand-red) 0% 25%, #ffffff 0% 50%) 14 repeat;
         }
 
         /* NAVIGATION STYLE KINŪ */
@@ -107,7 +102,7 @@
 
         @media (max-width: 768px) {
             nav { padding: 20px; }
-            .container { padding: 20px 20px 100px; }
+            .container { padding: 15px 15px 100px; }
             .menu-grid { grid-template-columns: 1fr; gap: 40px; }
             .page-title { font-size: 3rem; }
         }
@@ -125,7 +120,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 11px 0; /* Padding ajusté pour un équilibre parfait */
+            padding: 11px 0;
             border-bottom: 1px solid var(--line-color);
         }
 
@@ -208,9 +203,6 @@
     </style>
 </head>
 <body>
-
-    <!-- FRISE DAMIER SUPÉRIEURE -->
-    <div class="top-damier"></div>
 
     <!-- NAVIGATION STYLE KINŪ -->
     <nav>
@@ -308,9 +300,8 @@
                 </div>
             </div>
 
-            <!-- COLONNE DROITE : 7 PIZZAS + BOISSONS EN BAS À DROITE -->
+            <!-- COLONNE DROITE : 7 PIZZAS + BOISSONS -->
             <div>
-                <!-- En-tête de prix aligné avec la colonne de gauche -->
                 <div class="price-header" style="margin-top: 52px;">
                     <span>Moy.</span>
                     <span>Gde.</span>
@@ -372,7 +363,7 @@
                     <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                 </div>
 
-                <!-- SECTION BOISSONS BIEN CALÉE EN BAS À DROITE -->
+                <!-- SECTION BOISSONS -->
                 <h2 class="section-title" style="margin-top: 32px;">Boissons</h2>
 
                 <div class="item-row">
@@ -414,9 +405,6 @@
     <div class="call-bar">
         <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
     </div>
-
-    <!-- FRISE DAMIER INFÉRIEURE -->
-    <div class="bottom-damier"></div>
 
 </body>
 </html>
