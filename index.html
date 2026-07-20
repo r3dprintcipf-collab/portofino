@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofino - Menu</title>
-    <!-- Google Fonts pour 'menu', 'Pesto Fresco/Kalam' (style script) + CDN Font pour 'Brittany Signature' -->
+    <!-- Google Fonts pour 'menu', 'Kalam' (style Pesto Fresco) + CDN Font pour 'Brittany Signature' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 12px; /* Damier fin et élégant sur mobile */
+            --frise-size: 12px;
         }
 
         * {
@@ -36,6 +36,9 @@
             padding: 0;
             position: relative;
             min-height: 100vh;
+            /* Texture de fond subtile effet papier feutré artisanal */
+            background-image: radial-gradient(rgba(0,0,0,0.015) 1px, transparent 0);
+            background-size: 16px 16px;
         }
 
         /* --- FRISE DAMIER FIXE SUR LES 4 CÔTÉS --- */
@@ -56,7 +59,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 22px 18px 80px 18px;
+            padding: 22px 18px 90px 18px;
         }
 
         /* EN-TÊTE MOBILE-FIRST */
@@ -69,11 +72,12 @@
         }
 
         .header-brand img {
-            max-width: 155px; /* Logo légèrement agrandi */
+            max-width: 160px;
             height: auto;
             margin: 0 auto;
             display: block;
             mix-blend-mode: multiply;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.06));
         }
 
         .brand-subtitle {
@@ -103,22 +107,34 @@
             margin-top: 10px;
         }
 
-        /* TITRES DE SECTIONS (Pizzas / Boissons) LÉGÈREMENT AGRANDIS */
+        /* TITRES DE SECTIONS */
         .section-title {
             font-family: 'Caveat', cursive;
-            font-size: 2.5rem; /* Agrandit pour plus de prestance */
+            font-size: 2.5rem;
             color: var(--brand-red);
-            margin-bottom: 8px;
-            margin-top: 10px;
+            margin-bottom: 6px;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* LIGNES PRODUITS TACTILES */
+        /* Petit séparateur décoratif élégant sous les titres de section */
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--line-color), transparent);
+        }
+
+        /* LIGNES PRODUITS TACTILES ET LISIBLES */
         .item-row {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding: 12px 6px;
-            border-bottom: 1px solid var(--line-color);
+            padding: 13px 6px;
+            border-bottom: 1px dashed var(--line-color); /* Ligne pointillée élégante pour guider l'œil */
+            position: relative;
         }
 
         .item-details { 
@@ -126,20 +142,18 @@
             flex-grow: 1;
         }
         
-        /* STYLE MANUSCRIT POUR LES NOMS DE PIZZAS */
         .item-name { 
             font-family: 'Kalam', cursive, sans-serif;
-            font-size: 1.05rem; 
+            font-size: 1.08rem; 
             font-weight: 700; 
             text-transform: capitalize; 
             letter-spacing: 0.3px; 
             color: var(--text-color); 
         }
 
-        /* Style standard pour les boissons */
         .drink-name {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.3px;
@@ -148,15 +162,30 @@
         
         .item-desc { 
             font-size: 0.75rem; 
-            color: #555; 
+            color: #606060; 
             margin-top: 2px; 
             line-height: 1.35; 
+        }
+
+        /* Mention "Coup de cœur" subtile pour les pizzas phares */
+        .badge-fav {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: rgba(168, 35, 41, 0.08);
+            color: var(--brand-red);
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin-left: 6px;
+            vertical-align: middle;
+            display: inline-block;
         }
 
         .item-prices {
             display: flex;
             gap: 14px;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: var(--brand-red);
             white-space: nowrap;
@@ -164,7 +193,7 @@
         }
 
         .item-prices span { 
-            min-width: 42px; 
+            min-width: 44px; 
             text-align: right; 
         }
 
@@ -181,7 +210,7 @@
         }
 
         .price-header span { 
-            min-width: 42px; 
+            min-width: 44px; 
             text-align: right; 
         }
 
@@ -189,10 +218,10 @@
             display: none;
         }
 
-        /* BOUTON DE COMMANDE FLOTTANT EN BAS POUR MOBILE */
+        /* BOUTON DE COMMANDE FLOTTANT EN BAS POUR MOBILE (Ultra léché) */
         .call-bar {
             position: fixed;
-            bottom: 16px;
+            bottom: 18px;
             left: 0;
             right: 0;
             text-align: center;
@@ -210,27 +239,28 @@
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 35px;
-            font-size: 0.92rem;
+            padding: 15px 30px;
+            border-radius: 40px;
+            font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 0.3px;
             white-space: nowrap;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 8px 25px rgba(27, 77, 62, 0.35);
             width: 100%;
-            max-width: 380px;
-            transition: transform 0.1s ease, background-color 0.2s ease;
+            max-width: 390px;
+            transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .btn-call:active {
-            transform: scale(0.97);
-            background-color: #14372c;
+            transform: scale(0.96);
+            background-color: var(--brand-red);
+            box-shadow: 0 4px 15px rgba(168, 35, 41, 0.35);
         }
 
         /* ADAPTATION ORDINATEUR */
         @media (min-width: 769px) {
             .container { max-width: 1100px; padding: 40px 45px 60px; }
-            .menu-grid { grid-template-columns: 1fr 1fr; gap: 50px; }
+            .menu-grid { grid-template-columns: 1fr 1fr; gap: 55px; }
             .right-column-header { display: flex; }
             .header-brand img { max-width: 180px; }
             .call-bar { position: static; margin-top: 50px; padding: 0; }
@@ -247,7 +277,7 @@
     <div class="damier damier-left"></div>
     <div class="damier damier-right"></div>
 
-    <!-- CONTENU PRINCIPAL -->
+    <!-- CONTENEUR PRINCIPAL -->
     <div class="container">
         
         <!-- EN-TÊTE -->
@@ -292,7 +322,7 @@
 
                 <div class="item-row">
                     <div class="item-details">
-                        <div class="item-name">4 Fromages</div>
+                        <div class="item-name">4 Fromages <span class="badge-fav">Populaire</span></div>
                         <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
                     </div>
                     <div class="item-prices"><span>8 500</span><span>9 500</span></div>
@@ -356,7 +386,7 @@
 
                 <div class="item-row">
                     <div class="item-details">
-                        <div class="item-name">Portofino By H. Salloub</div>
+                        <div class="item-name">Portofino By H. Salloub <span class="badge-fav">Signature</span></div>
                         <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
                     </div>
                     <div class="item-prices"><span>9 000</span><span>10 000</span></div>
@@ -403,7 +433,7 @@
                 </div>
 
                 <!-- SECTION BOISSONS -->
-                <h2 class="section-title" style="margin-top: 32px;">Boissons</h2>
+                <h2 class="section-title" style="margin-top: 38px;">Boissons</h2>
 
                 <div class="item-row">
                     <div class="item-details">
@@ -448,7 +478,7 @@
         <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE -->
         <div class="call-bar">
             <a href="tel:+2250747005656" class="btn-call">🛵 Commander au +225 07 47 00 56 56</a>
-        </div>
+    </div>
 
     </div>
 
