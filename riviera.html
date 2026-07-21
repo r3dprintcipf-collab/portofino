@@ -230,7 +230,7 @@
             text-align: center; 
         }
 
-        /* BOUTON FLOTTANT BAS AJUSTÉ POUR MOBILE/SAFARI */
+        /* BOUTON FLOTTANT BAS */
         .call-bar {
             position: fixed;
             bottom: calc(45px + env(safe-area-inset-bottom, 0px));
@@ -267,6 +267,20 @@
             background-color: var(--brand-red);
             box-shadow: 0 6px 20px rgba(168, 35, 41, 0.4);
             justify-content: space-between;
+        }
+
+        /* ANIMATION MOTO */
+        @keyframes motoVibe {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(2px) translateY(-1px); }
+            50% { transform: translateX(0) translateY(-2px); }
+            75% { transform: translateX(-1px) translateY(0); }
+        }
+
+        .btn-call .moto-icon {
+            display: inline-block;
+            margin-right: 6px;
+            animation: motoVibe 0.6s infinite ease-in-out;
         }
 
         /* MODALES ET POPUPS */
@@ -566,7 +580,7 @@
         <!-- BOUTON DU BAS -->
         <div class="call-bar">
             <button id="mainActionBtn" class="btn-call">
-                <span>🛵 Commander</span>
+                <span><span class="moto-icon">🛵</span> Commander</span>
             </button>
         </div>
 
@@ -709,7 +723,7 @@
                 mainBtn.innerHTML = `<span>🛒 ${totalQty} article${totalQty > 1 ? 's' : ''}</span> <span>${totalPrice.toLocaleString()} FCFA</span>`;
             } else {
                 mainBtn.classList.remove('cart-mode');
-                mainBtn.innerHTML = `<span>🛵 Commander</span>`;
+                mainBtn.innerHTML = `<span><span class="moto-icon">🛵</span> Commander</span>`;
             }
         }
 
