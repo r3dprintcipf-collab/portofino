@@ -82,6 +82,33 @@
             margin-top: 10px;
         }
 
+        /* BOUTON RETOUR ACCUEIL */
+        .btn-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--line-color);
+            border-radius: 50%;
+            color: var(--brand-green);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        .btn-home:hover {
+            background-color: var(--brand-green);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
         .header-brand {
             text-align: center;
             margin-bottom: 25px;
@@ -135,17 +162,22 @@
             background: linear-gradient(to right, var(--line-color), transparent);
         }
 
+        /* EN-TÊTE ET PRIX ALIGNÉS */
         .price-header {
             display: flex;
             justify-content: flex-end;
             gap: 14px;
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             text-transform: uppercase;
             color: #777;
             padding-bottom: 6px;
             font-weight: 700;
+            letter-spacing: 0.5px;
         }
-        .price-header span { min-width: 44px; text-align: right; }
+        .price-header span { 
+            min-width: 58px; 
+            text-align: center; 
+        }
 
         .item-row {
             display: flex;
@@ -155,12 +187,10 @@
             border-bottom: 1px dashed var(--line-color);
             border-radius: 8px;
             transition: background-color 0.2s ease;
-        }
-
-        .ordering-active .item-row {
             cursor: pointer;
         }
-        .ordering-active .item-row:hover {
+
+        .item-row:hover {
             background-color: rgba(27, 77, 62, 0.05);
         }
 
@@ -186,7 +216,10 @@
             color: var(--brand-red);
             white-space: nowrap;
         }
-        .item-prices span { min-width: 44px; text-align: right; }
+        .item-prices span { 
+            min-width: 58px; 
+            text-align: center; 
+        }
 
         /* BOUTON FLOTTANT BAS */
         .call-bar {
@@ -389,6 +422,9 @@
     <div class="container" id="mainContainer">
         
         <div class="menu-card">
+            <!-- BOUTON ACCUEIL -->
+            <a href="index.html" class="btn-home" title="Retour à l'accueil">🏠</a>
+
             <div class="header-brand">
                 <img src="logo.jpg" alt="Logo Portofino">
                 <div class="brand-subtitle">By H. Salloub</div>
@@ -400,7 +436,7 @@
                 <!-- COLONNE 1 -->
                 <div>
                     <h2 class="section-title">Pizzas</h2>
-                    <div class="price-header"><span>Moy.</span><span>Gde.</span></div>
+                    <div class="price-header"><span>Moyenne</span><span>Grande</span></div>
 
                     <div class="item-row" data-type="pizza" data-name="Margherita" data-pmoy="7500" data-pgde="8500">
                         <div class="item-details"><div class="item-name">Margherita</div><div class="item-desc">Sauce tomate, fromage, origan</div></div>
@@ -445,7 +481,7 @@
 
                 <!-- COLONNE 2 -->
                 <div>
-                    <div class="price-header" style="display:none;"><span>Moy.</span><span>Gde.</span></div>
+                    <div class="price-header" style="display:none;"><span>Moyenne</span><span>Grande</span></div>
 
                     <div class="item-row" data-type="pizza" data-name="Poulet BBQ" data-pmoy="9000" data-pgde="10000">
                         <div class="item-details"><div class="item-name">Poulet BBQ</div><div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue, origan</div></div>
@@ -484,34 +520,34 @@
 
                     <div class="item-row" data-type="single" data-name="Bella Ciao 🍫" data-price="5000">
                         <div class="item-details"><div class="item-name">Bella Ciao 🍫</div><div class="item-desc">Nutella, banane</div></div>
-                        <div class="item-prices"><span>5 000</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">5 000</span></div>
                     </div>
 
                     <h2 class="section-title" style="margin-top: 38px;">Boissons</h2>
 
                     <div class="item-row" data-type="single" data-name="Eau 0,5 L" data-price="500">
                         <div class="item-details"><div class="drink-name">Eau 0,5 L</div></div>
-                        <div class="item-prices"><span>500</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">500</span></div>
                     </div>
                     <div class="item-row" data-type="single" data-name="Eau 1 L" data-price="1000">
                         <div class="item-details"><div class="drink-name">Eau 1 L</div></div>
-                        <div class="item-prices"><span>1 000</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">1 000</span></div>
                     </div>
                     <div class="item-row" data-type="single" data-name="Soda (Coca, Fanta, Sprite)" data-price="1000">
                         <div class="item-details"><div class="drink-name">Soda</div><div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div></div>
-                        <div class="item-prices"><span>1 000</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">1 000</span></div>
                     </div>
                     <div class="item-row" data-type="single" data-name="Ice Tea" data-price="1500">
                         <div class="item-details"><div class="drink-name">Ice Tea</div></div>
-                        <div class="item-prices"><span>1 500</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">1 500</span></div>
                     </div>
                     <div class="item-row" data-type="single" data-name="Cody's" data-price="1500">
                         <div class="item-details"><div class="drink-name">Cody's</div></div>
-                        <div class="item-prices"><span>1 500</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">1 500</span></div>
                     </div>
                     <div class="item-row" data-type="single" data-name="Red Bull" data-price="2000">
                         <div class="item-details"><div class="drink-name">Red Bull</div></div>
-                        <div class="item-prices"><span>2 000</span></div>
+                        <div class="item-prices"><span style="min-width: 130px; text-align: center;">2 000</span></div>
                     </div>
 
                 </div>
@@ -588,34 +624,20 @@
     </div>
 
     <script>
-        let isOrderingMode = false;
         let cart = [];
         let selectedPizza = null;
         let selectedSize = null;
 
         const mainBtn = document.getElementById('mainActionBtn');
-        const container = document.getElementById('mainContainer');
 
-        // Activation du mode commande au clic sur le bouton initial
+        // Clic sur le bouton du bas
         mainBtn.addEventListener('click', function() {
-            if (!isOrderingMode) {
-                isOrderingMode = true;
-                container.classList.add('ordering-active');
-                updateCartButton();
-                alert("Mode commande activé ! Cliquez sur un plat pour l'ajouter à votre panier.");
-            } else {
-                openCart();
-            }
+            openCart();
         });
 
-        // Gestion du clic sur les articles
+        // Clic sur les articles du menu
         document.querySelectorAll('.item-row').forEach(row => {
             row.addEventListener('click', function() {
-                if (!isOrderingMode) {
-                    isOrderingMode = true;
-                    container.classList.add('ordering-active');
-                }
-
                 const type = this.dataset.type;
                 const name = this.dataset.name;
 
@@ -638,7 +660,7 @@
             });
         });
 
-        // Gestion de la sélection de taille
+        // Choix de la taille
         document.getElementById('optMoy').addEventListener('click', () => selectSize('Moyenne'));
         document.getElementById('optGde').addEventListener('click', () => selectSize('Grande'));
 
@@ -680,14 +702,14 @@
                 mainBtn.classList.add('cart-mode');
                 mainBtn.innerHTML = `<span>🛒 ${totalQty} article${totalQty > 1 ? 's' : ''}</span> <span>${totalPrice.toLocaleString()} FCFA</span>`;
             } else {
-                mainBtn.classList.add('cart-mode');
-                mainBtn.innerHTML = `<span>🛒 Mon Panier (0)</span> <span>0 FCFA</span>`;
+                mainBtn.classList.remove('cart-mode');
+                mainBtn.innerHTML = `<span>🛵 Commander</span>`;
             }
         }
 
         function openCart() {
             if (cart.length === 0) {
-                alert("Votre panier est vide pour le moment.");
+                alert("Votre panier est vide. Cliquez sur un plat du menu pour l'ajouter.");
                 return;
             }
 
@@ -764,7 +786,6 @@
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
         
-        // Fermer au clic à l'extérieur de la modale
         function closeOnOverlay(event, id) {
             if (event.target.id === id) {
                 closeModal(id);
