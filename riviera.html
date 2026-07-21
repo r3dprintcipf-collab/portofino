@@ -43,6 +43,22 @@
             background-position: 0 0, 6px 6px;
         }
 
+        /* CACHES MASQUANTS POUR LE DÉFILEMENT (HAUT ET BAS) */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background-color: var(--bg-color);
+            z-index: 998;
+            pointer-events: none;
+        }
+
+        body::before { top: 0; }
+        body::after { bottom: 0; }
+
         /* CADRE DAMIER FIXE */
         .damier {
             position: fixed;
@@ -57,19 +73,12 @@
         .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
         .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; background-position: right top; }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; right: 0; height: 28px;
-            background-color: var(--bg-color);
-            z-index: 999;
-            pointer-events: none;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 120px 32px;
+            padding: 45px 32px 140px 32px;
+            position: relative;
+            z-index: 1;
         }
 
         .menu-card {
@@ -227,7 +236,7 @@
             bottom: 35px;
             left: 0; right: 0;
             text-align: center;
-            z-index: 999;
+            z-index: 1001;
             padding: 0 30px;
             pointer-events: none;
         }
@@ -295,7 +304,6 @@
             position: relative;
         }
 
-        /* BOUTON FERMER (PETITE CROIX) */
         .close-btn {
             position: absolute;
             top: 12px;
@@ -405,7 +413,7 @@
         }
 
         @media (min-width: 769px) {
-            .container { max-width: 1100px; padding: 50px 40px 60px; }
+            .container { max-width: 1100px; padding: 50px 40px 140px; }
             .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
         }
@@ -592,7 +600,7 @@
             <div class="modal-title">Votre Commande</div>
             
             <div id="cartItemsList" style="margin-bottom: 15px;">
-                <!-- Liste des articles générée en JS -->
+                <!-- Liste générée en JS -->
             </div>
 
             <div style="text-align: right; font-weight: bold; font-size: 1.1rem; margin-bottom: 20px; color: var(--brand-red);" id="cartTotalText">
@@ -630,12 +638,10 @@
 
         const mainBtn = document.getElementById('mainActionBtn');
 
-        // Clic sur le bouton du bas
         mainBtn.addEventListener('click', function() {
             openCart();
         });
 
-        // Clic sur les articles du menu
         document.querySelectorAll('.item-row').forEach(row => {
             row.addEventListener('click', function() {
                 const type = this.dataset.type;
@@ -660,7 +666,6 @@
             });
         });
 
-        // Choix de la taille
         document.getElementById('optMoy').addEventListener('click', () => selectSize('Moyenne'));
         document.getElementById('optGde').addEventListener('click', () => selectSize('Grande'));
 
