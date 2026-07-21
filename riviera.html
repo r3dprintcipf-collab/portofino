@@ -76,7 +76,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 140px 32px;
+            padding: 45px 32px 85px 32px; /* Réduction de l'espace en bas de 140px à 85px */
             position: relative;
             z-index: 1;
         }
@@ -233,7 +233,7 @@
         /* BOUTON FLOTTANT BAS */
         .call-bar {
             position: fixed;
-            bottom: 35px;
+            bottom: 12px; /* Rapproché du bas de l'écran (de 35px à 12px) */
             left: 0; right: 0;
             text-align: center;
             z-index: 1001;
@@ -413,9 +413,10 @@
         }
 
         @media (min-width: 769px) {
-            .container { max-width: 1100px; padding: 50px 40px 140px; }
+            .container { max-width: 1100px; padding: 50px 40px 100px; }
             .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+            .call-bar { bottom: 20px; }
         }
     </style>
 </head>
@@ -613,7 +614,7 @@
             </div>
             <div class="form-group">
                 <label>Quartier / Lieu de livraison *</label>
-                <input type="text" id="clientLocation" placeholder="Ex: Zone 4, Rue Pierre et Marie Curie">
+                <input type="text" id="clientLocation" placeholder="Ex: Riviera 3, Rue E12">
             </div>
             <div class="form-group">
                 <label>Numéro de Téléphone *</label>
@@ -763,7 +764,7 @@
                 return;
             }
 
-            let message = `🍕 *NOUVELLE COMMANDE - PORTOFINO*\n\n`;
+            let message = `🍕 *NOUVELLE COMMANDE - PORTOFINO (RIVIERA)*\n\n`;
             message += `👤 *Client :* ${name}\n`;
             message += `📍 *Livraison :* ${location}\n`;
             message += `📞 *Contact :* ${phone}\n\n`;
@@ -783,7 +784,9 @@
             message += `\n💵 *Total à payer :* ${total.toLocaleString()} FCFA`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/2250747005656?text=${encodedMessage}`;
+            
+            // NUMÉRO DE COMMANDE RIVIERA MODIFIÉ
+            const whatsappURL = `https://wa.me/2250708843333?text=${encodedMessage}`;
 
             window.open(whatsappURL, '_blank');
         }
