@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Portofino - Menu & Commande</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,7 +76,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 85px 32px; /* Réduction de l'espace en bas de 140px à 85px */
+            padding: 45px 32px calc(110px + env(safe-area-inset-bottom, 0px)) 32px;
             position: relative;
             z-index: 1;
         }
@@ -230,10 +230,10 @@
             text-align: center; 
         }
 
-        /* BOUTON FLOTTANT BAS */
+        /* BOUTON FLOTTANT BAS AJUSTÉ POUR MOBILE/SAFARI */
         .call-bar {
             position: fixed;
-            bottom: 12px; /* Rapproché du bas de l'écran (de 35px à 12px) */
+            bottom: calc(45px + env(safe-area-inset-bottom, 0px));
             left: 0; right: 0;
             text-align: center;
             z-index: 1001;
@@ -416,7 +416,7 @@
             .container { max-width: 1100px; padding: 50px 40px 100px; }
             .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
-            .call-bar { bottom: 20px; }
+            .call-bar { bottom: 25px; }
         }
     </style>
 </head>
