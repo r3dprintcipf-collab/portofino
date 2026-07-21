@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofino - Menu</title>
-    <!-- Google Fonts pour 'menu', 'Kalam' + CDN Font pour 'Brittany Signature' -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
@@ -12,13 +12,12 @@
 
     <style>
         :root {
-            --bg-color: #f7f3e9; /* Fond crème d'origine */
-            --card-bg: #fffbf2; /* Blanc cassé très chaud effet papier vintage */
+            --bg-color: #f7f3e9;
+            --card-bg: #fffbf2;
             --text-color: #1a1a1a;
             --brand-red: #a82329;
             --brand-green: #1b4d3e;
             --line-color: #e2dacb;
-            --frise-size: 14px; /* Taille exacte d'un carré */
         }
 
         * {
@@ -50,7 +49,7 @@
             to { opacity: 1; }
         }
 
-        /* --- SYSTÈME D'ANIMATION PROFESSIONNEL (SCROLL REVEAL) --- */
+        /* --- ANIMATION SCROLL REVEAL --- */
         .reveal {
             opacity: 0;
             transform: translateY(25px);
@@ -63,13 +62,12 @@
             transform: translateY(0);
         }
 
-        /* Décalages en cascade pour un effet haut de gamme */
         .delay-1 { transition-delay: 0.1s; }
         .delay-2 { transition-delay: 0.2s; }
         .delay-3 { transition-delay: 0.3s; }
         .delay-4 { transition-delay: 0.4s; }
 
-        /* --- CADRE DAMIER FIXE ROBUSTE (ALIGNEMENT PARFAIT SANS COUPURE) --- */
+        /* --- CADRE DAMIER FIXE --- */
         .damier {
             position: fixed;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
@@ -83,11 +81,24 @@
         .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
         .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; background-position: right top; }
 
-        /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
+        /* CACHE MASQUANT POUR ÉVITER QUE LE TEXTE PASSE AU-DESSUS DE LA BORDURE EN HAUT ET EN BAS */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 28px;
+            background-color: var(--bg-color);
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        /* CONTENEUR PRINCIPAL (Correction des marges de défilement) */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 100px 32px;
+            padding: 45px 32px 110px 32px; /* Marges intérieures ajustées */
         }
 
         .menu-card {
@@ -97,9 +108,9 @@
             padding: 30px 20px;
             border: 1px solid rgba(226, 218, 203, 0.9);
             position: relative;
+            margin-top: 10px; /* Espace sous le damier du haut */
         }
 
-        /* EN-TÊTE MOBILE-FIRST AVEC ESPACE SÉCURISÉ POUR ÉVITER LES COUPURES */
         .header-brand {
             text-align: center;
             margin-bottom: 25px;
@@ -109,7 +120,6 @@
             padding-top: 5px;
         }
 
-        /* MASQUAGE PROPRE DU LOGO SANS COUPURE */
         .header-brand img {
             max-width: 185px;
             height: auto;
@@ -149,7 +159,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.03);
         }
 
-        /* GRILLE MOBILE : UNE SEULE COLONNE FLUIDE */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -157,7 +166,6 @@
             margin-top: 10px;
         }
 
-        /* TITRES DE SECTIONS */
         .section-title {
             font-family: 'Caveat', cursive;
             font-size: 2.6rem;
@@ -176,7 +184,6 @@
             background: linear-gradient(to right, var(--line-color), transparent);
         }
 
-        /* LIGNES PRODUITS TACTILES AVEC EFFET HOVER FLUIDE */
         .item-row {
             display: flex;
             justify-content: space-between;
@@ -269,15 +276,15 @@
             display: none;
         }
 
-        /* BOUTON DE COMMANDE FLOTTANT COMPACT & ANIMATION LARGE */
+        /* BOUTON FLOTTANT COMPACT */
         .call-bar {
             position: fixed;
-            bottom: 35px; /* Écarte du damier du bas */
+            bottom: 35px;
             left: 0;
             right: 0;
             text-align: center;
             z-index: 999;
-            padding: 0 45px; /* Évite les damiers latéraux */
+            padding: 0 45px;
             pointer-events: none;
         }
 
@@ -289,7 +296,7 @@
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 10px 20px; /* Plus compact */
+            padding: 10px 20px;
             border-radius: 30px;
             font-size: 0.95rem;
             font-weight: 700;
@@ -298,7 +305,7 @@
             white-space: nowrap;
             box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
             width: 100%;
-            max-width: 240px; /* Taille réduite */
+            max-width: 240px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
@@ -306,7 +313,6 @@
             transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
         }
 
-        /* CONTENEUR DE LA MOTO QUI S'ÉTEND SUR TOUTE LA LARGEUR DU BOUTON */
         .scooter-wrapper {
             position: absolute;
             left: 12px;
@@ -324,7 +330,6 @@
             animation: driveScooterFull 5s infinite ease-in-out;
         }
 
-        /* ANIMATION DE GAUCHE À DROITE SUR TOUT LE BOUTON */
         @keyframes driveScooterFull {
             0% { transform: translateX(0) scaleX(-1); }
             45% { transform: translateX(calc(240px - 55px)) scaleX(-1); }
@@ -352,10 +357,9 @@
             animation: none;
         }
 
-        /* ADAPTATION ORDINATEUR */
         @media (min-width: 769px) {
             .container { max-width: 1100px; padding: 50px 40px 60px; }
-            .menu-card { padding: 50px 60px; }
+            .menu-card { padding: 50px 60px; margin-top: 0; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
@@ -365,17 +369,15 @@
 </head>
 <body>
 
-    <!-- CADRE DAMIER FIXE CORRIGÉ SUR LES 4 CÔTÉS -->
+    <!-- CADRE DAMIER FIXE -->
     <div class="damier damier-top"></div>
     <div class="damier damier-bottom"></div>
     <div class="damier damier-left"></div>
     <div class="damier damier-right"></div>
 
-    <!-- CONTENEUR PRINCIPAL -->
     <div class="container">
         
         <div class="menu-card reveal" id="menuCard">
-            <!-- EN-TÊTE -->
             <div class="header-brand">
                 <img src="logo.jpg" 
                      alt="Logo Portofino - Pizzeria & Grill" 
@@ -390,7 +392,6 @@
 
             <div class="menu-grid">
                 
-                <!-- COLONNE GAUCHE : PIZZAS 1 -->
                 <div class="reveal delay-3">
                     <h2 class="section-title">Pizzas</h2>
                     
@@ -464,7 +465,6 @@
                     </div>
                 </div>
 
-                <!-- COLONNE DROITE : SUITE PIZZAS + BOISSONS -->
                 <div class="reveal delay-4">
                     <div class="price-header right-column-header">
                         <span>Moy.</span>
@@ -527,7 +527,6 @@
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <!-- DERNIÈRE PIZZA : BELLA CIAO (SUCRÉE) -->
                     <div class="item-row">
                         <div class="item-details">
                             <div class="item-name">Bella Ciao 🍫</div>
@@ -536,7 +535,6 @@
                         <div class="item-prices"><span style="min-width: 90px; text-align: right;">5 000</span></div>
                     </div>
 
-                    <!-- SECTION BOISSONS -->
                     <h2 class="section-title" style="margin-top: 38px;">Boissons</h2>
 
                     <div class="item-row">
@@ -580,7 +578,6 @@
             </div>
         </div>
 
-        <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE -->
         <div class="call-bar reveal delay-4" id="callBar">
             <a href="tel:+2250747005656" class="btn-call">
                 <div class="scooter-wrapper">
@@ -592,7 +589,6 @@
 
     </div>
 
-    <!-- SCRIPT D'ANIMATION AU CHARGEMENT ET AU SCROLL -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
