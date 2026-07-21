@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofino - Menu</title>
+    <title>Portofino - Menu & Commande</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +36,6 @@
             padding: 0;
             position: relative;
             min-height: 100vh;
-            opacity: 0;
-            animation: fadeInBody 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             background-image: 
                 radial-gradient(rgba(139, 69, 19, 0.04) 1px, transparent 0),
                 radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0);
@@ -45,29 +43,7 @@
             background-position: 0 0, 6px 6px;
         }
 
-        @keyframes fadeInBody {
-            to { opacity: 1; }
-        }
-
-        /* --- ANIMATION SCROLL REVEAL --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
-        .delay-4 { transition-delay: 0.4s; }
-
-        /* --- CADRE DAMIER FIXE --- */
+        /* CADRE DAMIER FIXE */
         .damier {
             position: fixed;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
@@ -81,64 +57,29 @@
         .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
         .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; background-position: right top; }
 
-        /* CACHE MASQUANT POUR ÉVITER QUE LE TEXTE PASSE AU-DESSUS DE LA BORDURE EN HAUT ET EN BAS */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 28px;
+            top: 0; left: 0; right: 0; height: 28px;
             background-color: var(--bg-color);
             z-index: 999;
             pointer-events: none;
         }
 
-        /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 110px 32px;
+            padding: 45px 32px 120px 32px;
         }
 
         .menu-card {
             background-color: var(--card-bg);
             border-radius: 18px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
             padding: 30px 20px;
             border: 1px solid rgba(226, 218, 203, 0.9);
             position: relative;
             margin-top: 10px;
-        }
-
-        /* BOUTON RETOUR ACCUEIL (DISCRET EN HAUT À GAUCHE) */
-        .btn-home {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #666;
-            text-decoration: none;
-            background-color: rgba(0, 0, 0, 0.03);
-            padding: 5px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--line-color);
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-
-        .btn-home:hover {
-            color: var(--brand-red);
-            background-color: #fff;
-            border-color: var(--brand-red);
-        }
-
-        .btn-home:active {
-            transform: scale(0.95);
         }
 
         .header-brand {
@@ -147,37 +88,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 15px; /* Ajusté pour laisser de l'espace avec le bouton Home */
         }
 
         .header-brand img {
             max-width: 185px;
             height: auto;
-            margin: 0 auto;
-            display: block;
             -webkit-mask-image: radial-gradient(circle, black 68%, transparent 72%);
             mask-image: radial-gradient(circle, black 68%, transparent 72%);
-            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .header-brand img:hover {
-            transform: scale(1.03);
         }
 
         .brand-subtitle {
             font-family: 'Brittany Signature', cursive;
             font-size: 1.7rem;
             color: var(--brand-red);
-            line-height: 2.2;
             margin-top: 8px;
-            margin-bottom: 2px;
-            text-align: center;
-            padding: 0 16px;
-            overflow: visible;
-            display: inline-block;
-            position: relative;
-            bottom: -4px;
         }
 
         .page-title {
@@ -185,15 +109,12 @@
             font-size: 4.2rem;
             color: var(--brand-green);
             line-height: 1;
-            margin-top: 5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.03);
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 28px;
-            margin-top: 10px;
         }
 
         .section-title {
@@ -214,62 +135,49 @@
             background: linear-gradient(to right, var(--line-color), transparent);
         }
 
+        .price-header {
+            display: flex;
+            justify-content: flex-end;
+            gap: 14px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: #777;
+            padding-bottom: 6px;
+            font-weight: 700;
+        }
+        .price-header span { min-width: 44px; text-align: right; }
+
         .item-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             padding: 14px 10px;
             border-bottom: 1px dashed var(--line-color);
-            position: relative;
             border-radius: 8px;
-            transition: background-color 0.25s ease, transform 0.2s ease, padding-left 0.2s ease;
+            transition: background-color 0.2s ease;
         }
 
-        .item-row:hover {
-            background-color: rgba(27, 77, 62, 0.02);
-            padding-left: 14px;
+        .ordering-active .item-row {
+            cursor: pointer;
+        }
+        .ordering-active .item-row:hover {
+            background-color: rgba(27, 77, 62, 0.05);
         }
 
-        .item-row:active {
-            background-color: rgba(168, 35, 41, 0.06);
-            transform: scale(0.985);
-        }
-
-        .item-details { 
-            padding-right: 12px; 
-            flex-grow: 1;
-        }
-        
+        .item-details { flex-grow: 1; padding-right: 12px; }
         .item-name { 
-            font-family: 'Kalam', cursive, sans-serif;
+            font-family: 'Kalam', cursive; 
             font-size: 1.1rem; 
             font-weight: 700; 
-            text-transform: capitalize; 
-            letter-spacing: 0.3px; 
             color: var(--text-color); 
-            transition: color 0.2s ease;
         }
-
-        .item-row:hover .item-name {
-            color: var(--brand-green);
-        }
-
         .drink-name {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 0.92rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.3px;
-            color: var(--text-color);
         }
+        .item-desc { font-size: 0.76rem; color: #5d5d5d; margin-top: 2px; }
         
-        .item-desc { 
-            font-size: 0.76rem; 
-            color: #5d5d5d; 
-            margin-top: 2px; 
-            line-height: 1.35; 
-        }
-
         .item-prices {
             display: flex;
             gap: 14px;
@@ -277,44 +185,17 @@
             font-weight: 700;
             color: var(--brand-red);
             white-space: nowrap;
-            flex-shrink: 0;
         }
+        .item-prices span { min-width: 44px; text-align: right; }
 
-        .item-prices span { 
-            min-width: 44px; 
-            text-align: right; 
-        }
-
-        .price-header {
-            display: flex;
-            justify-content: flex-end;
-            gap: 14px;
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #777;
-            padding-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .price-header span { 
-            min-width: 44px; 
-            text-align: right; 
-        }
-
-        .right-column-header {
-            display: none;
-        }
-
-        /* BOUTON FLOTTANT COMPACT */
+        /* BOUTON FLOTTANT BAS */
         .call-bar {
             position: fixed;
             bottom: 35px;
-            left: 0;
-            right: 0;
+            left: 0; right: 0;
             text-align: center;
             z-index: 999;
-            padding: 0 45px;
+            padding: 0 30px;
             pointer-events: none;
         }
 
@@ -326,75 +207,152 @@
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 30px;
             font-size: 0.95rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
-            white-space: nowrap;
             box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
             width: 100%;
-            max-width: 240px;
+            max-width: 320px;
             margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            animation: pulseGlow 3s infinite ease-in-out;
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
         }
 
-        .scooter-wrapper {
-            position: absolute;
-            left: 12px;
-            right: 12px;
-            top: 0;
-            bottom: 0;
-            pointer-events: none;
+        .btn-call.cart-mode {
+            background-color: var(--brand-red);
+            box-shadow: 0 6px 20px rgba(168, 35, 41, 0.4);
+            justify-content: space-between;
+        }
+
+        /* MODALES ET POPUPS */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
             display: flex;
             align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
         }
 
-        .scooter-icon {
-            display: inline-block;
-            font-size: 1.1rem;
-            animation: driveScooterFull 5s infinite ease-in-out;
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        @keyframes driveScooterFull {
-            0% { transform: translateX(0) scaleX(-1); }
-            45% { transform: translateX(calc(240px - 55px)) scaleX(-1); }
-            50% { transform: translateX(calc(240px - 55px)) scaleX(1); }
-            95% { transform: translateX(0) scaleX(1); }
-            100% { transform: translateX(0) scaleX(-1); }
+        .modal-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--line-color);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
-        .btn-call:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 10px 25px rgba(27, 77, 62, 0.55);
-            background-color: #153d31;
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
         }
 
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
-            50% { box-shadow: 0 10px 25px rgba(27, 77, 62, 0.6); }
-            100% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
+        .modal-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.5rem;
+            color: var(--brand-green);
+            margin-bottom: 15px;
+            text-align: center;
         }
 
-        .btn-call:active {
-            transform: scale(0.96);
-            background-color: var(--brand-red);
-            box-shadow: 0 4px 12px rgba(168, 35, 41, 0.4);
-            animation: none;
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .size-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border: 2px solid var(--line-color);
+            border-radius: 10px;
+            background: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn.selected {
+            border-color: var(--brand-green);
+            background: rgba(27, 77, 62, 0.05);
+            color: var(--brand-green);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #444;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--line-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-sec, .btn-pri {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-sec { background: #e0e0e0; color: #333; }
+        .btn-pri { background: var(--brand-green); color: #fff; }
+
+        .cart-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--line-color);
+            font-size: 0.9rem;
         }
 
         @media (min-width: 769px) {
             .container { max-width: 1100px; padding: 50px 40px 60px; }
-            .menu-card { padding: 50px 60px; margin-top: 0; }
-            .btn-home { top: 24px; left: 24px; font-size: 0.85rem; padding: 6px 14px; }
+            .menu-card { padding: 50px 60px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
-            .right-column-header { display: flex; }
-            .call-bar { position: static; margin-top: 45px; padding: 0; }
-            .btn-call { width: auto; max-width: 260px; animation: none; }
         }
     </style>
 </head>
@@ -406,236 +364,383 @@
     <div class="damier damier-left"></div>
     <div class="damier damier-right"></div>
 
-    <div class="container">
+    <div class="container" id="mainContainer">
         
-        <div class="menu-card reveal" id="menuCard">
-
-            <!-- BOUTON ACCUEIL DISCRET -->
-            <a href="index.html" class="btn-home">
-                <span>🏠</span> Accueil
-            </a>
-
+        <div class="menu-card">
             <div class="header-brand">
-                <img src="logo.jpg" 
-                     alt="Logo Portofino - Pizzeria & Grill" 
-                     width="200" 
-                     height="200" 
-                     fetchpriority="high" 
-                     loading="eager" 
-                     decoding="async">
-                <div class="brand-subtitle reveal delay-1">By H. Salloub</div>
-                <h1 class="page-title reveal delay-2">menu</h1>
+                <img src="logo.jpg" alt="Logo Portofino">
+                <div class="brand-subtitle">By H. Salloub</div>
+                <h1 class="page-title">menu</h1>
             </div>
 
             <div class="menu-grid">
                 
-                <div class="reveal delay-3">
+                <!-- COLONNE 1 -->
+                <div>
                     <h2 class="section-title">Pizzas</h2>
-                    
-                    <div class="price-header">
-                        <span>Moy.</span>
-                        <span>Gde.</span>
-                    </div>
+                    <div class="price-header"><span>Moy.</span><span>Gde.</span></div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Margherita</div>
-                            <div class="item-desc">Sauce tomate, fromage, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Margherita" data-pmoy="7500" data-pgde="8500">
+                        <div class="item-details"><div class="item-name">Margherita</div><div class="item-desc">Sauce tomate, fromage, origan</div></div>
                         <div class="item-prices"><span>7 500</span><span>8 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Reine</div>
-                            <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Reine" data-pmoy="8000" data-pgde="9000">
+                        <div class="item-details"><div class="item-name">Reine</div><div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div></div>
                         <div class="item-prices"><span>8 000</span><span>9 000</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">4 Fromages</div>
-                            <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="4 Fromages" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">4 Fromages</div><div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Pepperoni</div>
-                            <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Pepperoni" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">Pepperoni</div><div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Calabraise</div>
-                            <div class="item-desc">Sauce tomate, fromage, jambon, olives, champignons, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Calabraise" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">Calabraise</div><div class="item-desc">Sauce tomate, fromage, jambon, olives, champignons, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Royale</div>
-                            <div class="item-desc">Sauce tomate, fromage, jambon, champignons, olives, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Royale" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">Royale</div><div class="item-desc">Sauce tomate, fromage, jambon, champignons, olives, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Sojok</div>
-                            <div class="item-desc">Sauce tomate, fromage, sojok, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Sojok" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">Sojok</div><div class="item-desc">Sauce tomate, fromage, sojok, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Mexicaine</div>
-                            <div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Mexicaine" data-pmoy="9000" data-pgde="10000">
+                        <div class="item-details"><div class="item-name">Mexicaine</div><div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
                 </div>
 
-                <div class="reveal delay-4">
-                    <div class="price-header right-column-header">
-                        <span>Moy.</span>
-                        <span>Gde.</span>
-                    </div>
+                <!-- COLONNE 2 -->
+                <div>
+                    <div class="price-header" style="display:none;"><span>Moy.</span><span>Gde.</span></div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Poulet BBQ</div>
-                            <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Poulet BBQ" data-pmoy="9000" data-pgde="10000">
+                        <div class="item-details"><div class="item-name">Poulet BBQ</div><div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Portofino By H. Salloub</div>
-                            <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Portofino By H. Salloub" data-pmoy="9000" data-pgde="10000">
+                        <div class="item-details"><div class="item-name">Portofino By H. Salloub</div><div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Crevettes</div>
-                            <div class="item-desc">Sauce tomate, fromage, crevettes, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Crevettes" data-pmoy="9000" data-pgde="10000">
+                        <div class="item-details"><div class="item-name">Crevettes</div><div class="item-desc">Sauce tomate, fromage, crevettes, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Reine aux Crevettes</div>
-                            <div class="item-desc">Sauce tomate, fromage, crevettes, champignons, olives, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Reine aux Crevettes" data-pmoy="9500" data-pgde="10500">
+                        <div class="item-details"><div class="item-name">Reine aux Crevettes</div><div class="item-desc">Sauce tomate, fromage, crevettes, champignons, olives, origan</div></div>
                         <div class="item-prices"><span>9 500</span><span>10 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Fruits de Mer</div>
-                            <div class="item-desc">Sauce tomate, fromage, calamars, moules, crevettes, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Fruits de Mer" data-pmoy="9500" data-pgde="10500">
+                        <div class="item-details"><div class="item-name">Fruits de Mer</div><div class="item-desc">Sauce tomate, fromage, calamars, moules, crevettes, origan</div></div>
                         <div class="item-prices"><span>9 500</span><span>10 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Saumon</div>
-                            <div class="item-desc">Sauce tomate, fromage, saumon, citron, crème fraîche, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Saumon" data-pmoy="10000" data-pgde="11000">
+                        <div class="item-details"><div class="item-name">Saumon</div><div class="item-desc">Sauce tomate, fromage, saumon, citron, crème fraîche, origan</div></div>
                         <div class="item-prices"><span>10 000</span><span>11 000</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Végétarienne</div>
-                            <div class="item-desc">Sauce tomate, fromage, poivrons, oignons, champignons, olives, origan</div>
-                        </div>
+                    <div class="item-row" data-type="pizza" data-name="Végétarienne" data-pmoy="8500" data-pgde="9500">
+                        <div class="item-details"><div class="item-name">Végétarienne</div><div class="item-desc">Sauce tomate, fromage, poivrons, oignons, champignons, olives, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="item-name">Bella Ciao 🍫</div>
-                            <div class="item-desc">Nutella, banane</div>
-                        </div>
-                        <div class="item-prices"><span style="min-width: 90px; text-align: right;">5 000</span></div>
+                    <div class="item-row" data-type="single" data-name="Bella Ciao 🍫" data-price="5000">
+                        <div class="item-details"><div class="item-name">Bella Ciao 🍫</div><div class="item-desc">Nutella, banane</div></div>
+                        <div class="item-prices"><span>5 000</span></div>
                     </div>
 
                     <h2 class="section-title" style="margin-top: 38px;">Boissons</h2>
 
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="drink-name">Eau 0,5 L / 1 L</div>
-                        </div>
-                        <div class="item-prices"><span>500 / 1 000</span></div>
+                    <div class="item-row" data-type="single" data-name="Eau 0,5 L" data-price="500">
+                        <div class="item-details"><div class="drink-name">Eau 0,5 L</div></div>
+                        <div class="item-prices"><span>500</span></div>
                     </div>
-
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="drink-name">Soda</div>
-                            <div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div>
-                        </div>
+                    <div class="item-row" data-type="single" data-name="Eau 1 L" data-price="1000">
+                        <div class="item-details"><div class="drink-name">Eau 1 L</div></div>
                         <div class="item-prices"><span>1 000</span></div>
                     </div>
-
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="drink-name">Ice Tea</div>
-                        </div>
+                    <div class="item-row" data-type="single" data-name="Soda (Coca, Fanta, Sprite)" data-price="1000">
+                        <div class="item-details"><div class="drink-name">Soda</div><div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div></div>
+                        <div class="item-prices"><span>1 000</span></div>
+                    </div>
+                    <div class="item-row" data-type="single" data-name="Ice Tea" data-price="1500">
+                        <div class="item-details"><div class="drink-name">Ice Tea</div></div>
                         <div class="item-prices"><span>1 500</span></div>
                     </div>
-
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="drink-name">Cody's</div>
-                        </div>
+                    <div class="item-row" data-type="single" data-name="Cody's" data-price="1500">
+                        <div class="item-details"><div class="drink-name">Cody's</div></div>
                         <div class="item-prices"><span>1 500</span></div>
                     </div>
-
-                    <div class="item-row">
-                        <div class="item-details">
-                            <div class="drink-name">Red Bull</div>
-                        </div>
+                    <div class="item-row" data-type="single" data-name="Red Bull" data-price="2000">
+                        <div class="item-details"><div class="drink-name">Red Bull</div></div>
                         <div class="item-prices"><span>2 000</span></div>
                     </div>
 
                 </div>
-
             </div>
         </div>
 
-        <div class="call-bar reveal delay-4" id="callBar">
-            <a href="tel:+2250747005656" class="btn-call">
-                <div class="scooter-wrapper">
-                    <span class="scooter-icon">🛵</span>
-                </div>
-                Commander
-            </a>
+        <!-- BOUTON DU BAS -->
+        <div class="call-bar">
+            <button id="mainActionBtn" class="btn-call">
+                <span>🛵 Commander</span>
+            </button>
         </div>
 
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                const reveals = document.querySelectorAll('.reveal');
-                reveals.forEach(element => {
-                    element.classList.add('active');
-                });
-            }, 100);
-        });
-    </script>
+    <!-- MODAL SELECTION TAILLE -->
+    <div class="modal-overlay" id="sizeModal">
+        <div class="modal-card">
+            <div class="modal-title" id="modalPizzaName">Choisir la taille</div>
+            <div class="option-group">
+                <div class="size-btn" id="optMoy">
+                    <span>Moyenne</span>
+                    <span id="priceMoy">0 FCFA</span>
+                </div>
+                <div class="size-btn" id="optGde">
+                    <span>Grande</span>
+                    <span id="priceGde">0 FCFA</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-sec" onclick="closeModal('sizeModal')">Annuler</button>
+                <button class="btn-pri" id="btnAddPizza">Ajouter</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- MODAL RECAPITULATIF PANIER / WHATSAPP -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-card">
+            <div class="modal-title">Votre Commande</div>
+            
+            <div id="cartItemsList" style="margin-bottom: 15px;">
+                <!-- Liste des articles générée en JS -->
+            </div>
+
+            <div style="text-align: right; font-weight: bold; font-size: 1.1rem; margin-bottom: 20px; color: var(--brand-red);" id="cartTotalText">
+                Total : 0 FCFA
+            </div>
+
+            <div class="form-group">
+                <label>Nom complet *</label>
+                <input type="text" id="clientName" placeholder="Ex: Jean Dupont">
+            </div>
+            <div class="form-group">
+                <label>Quartier / Lieu de livraison *</label>
+                <input type="text" id="clientLocation" placeholder="Ex: Zone 4, Rue Pierre et Marie Curie">
+            </div>
+            <div class="form-group">
+                <label>Numéro de Téléphone *</label>
+                <input type="tel" id="clientPhone" placeholder="Ex: 07 00 00 00 00">
+            </div>
+            <div class="form-group">
+                <label>Instructions spéciales / Remarques</label>
+                <textarea id="clientNotes" rows="2" placeholder="Ex: Sans oignons sur la Margherita, pâte bien cuite..."></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-sec" onclick="closeModal('cartModal')">Ajouter des articles</button>
+                <button class="btn-pri" style="background-color: #25D366;" onclick="sendWhatsApp()">Valider sur WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isOrderingMode = false;
+        let cart = [];
+        let selectedPizza = null;
+        let selectedSize = null;
+
+        const mainBtn = document.getElementById('mainActionBtn');
+        const container = document.getElementById('mainContainer');
+
+        // Activation du mode commande au clic sur le bouton initial
+        mainBtn.addEventListener('click', function() {
+            if (!isOrderingMode) {
+                isOrderingMode = true;
+                container.classList.add('ordering-active');
+                updateCartButton();
+                alert("Mode commande activé ! Cliquez sur un plat pour l'ajouter à votre panier.");
+            } else {
+                openCart();
+            }
+        });
+
+        // Gestion du clic sur les articles
+        document.querySelectorAll('.item-row').forEach(row => {
+            row.addEventListener('click', function() {
+                if (!isOrderingMode) {
+                    // Si mode consultation : active le mode commande automatiquement
+                    isOrderingMode = true;
+                    container.classList.add('ordering-active');
+                }
+
+                const type = this.dataset.type;
+                const name = this.dataset.name;
+
+                if (type === 'pizza') {
+                    selectedPizza = {
+                        name: name,
+                        pMoy: parseInt(this.dataset.pmoy),
+                        pGde: parseInt(this.dataset.pgde)
+                    };
+                    document.getElementById('modalPizzaName').innerText = name;
+                    document.getElementById('priceMoy').innerText = selectedPizza.pMoy.toLocaleString() + ' FCFA';
+                    document.getElementById('priceGde').innerText = selectedPizza.pGde.toLocaleString() + ' FCFA';
+                    
+                    // Reset sélection
+                    selectSize('Moyenne');
+                    openModal('sizeModal');
+                } else if (type === 'single') {
+                    const price = parseInt(this.dataset.price);
+                    addToCart(name, price);
+                }
+            });
+        });
+
+        // Gestion de la sélection de taille
+        document.getElementById('optMoy').addEventListener('click', () => selectSize('Moyenne'));
+        document.getElementById('optGde').addEventListener('click', () => selectSize('Grande'));
+
+        function selectSize(size) {
+            selectedSize = size;
+            if(size === 'Moyenne') {
+                document.getElementById('optMoy').classList.add('selected');
+                document.getElementById('optGde').classList.remove('selected');
+            } else {
+                document.getElementById('optGde').classList.add('selected');
+                document.getElementById('optMoy').classList.remove('selected');
+            }
+        }
+
+        document.getElementById('btnAddPizza').addEventListener('click', function() {
+            if (selectedPizza && selectedSize) {
+                const finalName = `${selectedPizza.name} (${selectedSize})`;
+                const finalPrice = selectedSize === 'Moyenne' ? selectedPizza.pMoy : selectedPizza.pGde;
+                addToCart(finalName, finalPrice);
+                closeModal('sizeModal');
+            }
+        });
+
+        function addToCart(itemName, price) {
+            const existing = cart.find(item => item.name === itemName);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name: itemName, price: price, qty: 1 });
+            }
+            updateCartButton();
+        }
+
+        function updateCartButton() {
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            if (totalQty > 0) {
+                mainBtn.classList.add('cart-mode');
+                mainBtn.innerHTML = `<span>🛒 ${totalQty} article${totalQty > 1 ? 's' : ''}</span> <span>${totalPrice.toLocaleString()} FCFA</span>`;
+            } else {
+                mainBtn.classList.add('cart-mode');
+                mainBtn.innerHTML = `<span>🛒 Mon Panier (0)</span> <span>0 FCFA</span>`;
+            }
+        }
+
+        function openCart() {
+            if (cart.length === 0) {
+                alert("Votre panier est vide pour le moment.");
+                return;
+            }
+
+            const listContainer = document.getElementById('cartItemsList');
+            listContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                listContainer.innerHTML += `
+                    <div class="cart-item-row">
+                        <div>
+                            <strong>${item.qty}x</strong> ${item.name}
+                        </div>
+                        <div>
+                            ${subtotal.toLocaleString()} FCFA 
+                            <button onclick="removeFromCart(${index})" style="border:none; background:none; color:red; cursor:pointer; margin-left:8px;">❌</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cartTotalText').innerText = `Total : ${total.toLocaleString()} FCFA`;
+            openModal('cartModal');
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            if (cart.length === 0) {
+                closeModal('cartModal');
+            } else {
+                openCart();
+            }
+            updateCartButton();
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('clientName').value.trim();
+            const location = document.getElementById('clientLocation').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+            const notes = document.getElementById('clientNotes').value.trim();
+
+            if (!name || !location || !phone) {
+                alert("Veuillez remplir votre nom, le quartier et votre numéro de téléphone.");
+                return;
+            }
+
+            let message = `🍕 *NOUVELLE COMMANDE - PORTOFINO*\n\n`;
+            message += `👤 *Client :* ${name}\n`;
+            message += `📍 *Livraison :* ${location}\n`;
+            message += `📞 *Contact :* ${phone}\n\n`;
+            message += `📝 *Détails de la commande :*\n`;
+
+            let total = 0;
+            cart.forEach(item => {
+                const subtotal = item.price * item.qty;
+                total += subtotal;
+                message += `• ${item.qty}x ${item.name} — ${subtotal.toLocaleString()} FCFA\n`;
+            });
+
+            if (notes) {
+                message += `\n💬 *Instructions spéciales :*\n${notes}\n`;
+            }
+
+            message += `\n💵 *Total à payer :* ${total.toLocaleString()} FCFA`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/2250747005656?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+    </script>
 </body>
 </html>
