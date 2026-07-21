@@ -252,13 +252,34 @@
             border-radius: 16px;
             width: 100%;
             max-width: 450px;
-            padding: 24px;
+            padding: 28px 24px 24px 24px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border: 1px solid var(--line-color);
             transform: translateY(20px);
             transition: transform 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
+            position: relative;
+        }
+
+        /* BOUTON FERMER (PETITE CROIX) */
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: transparent;
+            border: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            line-height: 1;
+            padding: 5px;
+        }
+
+        .close-btn:hover {
+            color: var(--brand-red);
         }
 
         .modal-overlay.active .modal-card {
@@ -271,6 +292,7 @@
             color: var(--brand-green);
             margin-bottom: 15px;
             text-align: center;
+            padding-right: 15px;
         }
 
         .option-group {
@@ -506,8 +528,9 @@
     </div>
 
     <!-- MODAL SELECTION TAILLE -->
-    <div class="modal-overlay" id="sizeModal">
+    <div class="modal-overlay" id="sizeModal" onclick="closeOnOverlay(event, 'sizeModal')">
         <div class="modal-card">
+            <button class="close-btn" onclick="closeModal('sizeModal')">✕</button>
             <div class="modal-title" id="modalPizzaName">Choisir la taille</div>
             <div class="option-group">
                 <div class="size-btn" id="optMoy">
@@ -527,8 +550,9 @@
     </div>
 
     <!-- MODAL RECAPITULATIF PANIER / WHATSAPP -->
-    <div class="modal-overlay" id="cartModal">
+    <div class="modal-overlay" id="cartModal" onclick="closeOnOverlay(event, 'cartModal')">
         <div class="modal-card">
+            <button class="close-btn" onclick="closeModal('cartModal')">✕</button>
             <div class="modal-title">Votre Commande</div>
             
             <div id="cartItemsList" style="margin-bottom: 15px;">
@@ -588,7 +612,6 @@
         document.querySelectorAll('.item-row').forEach(row => {
             row.addEventListener('click', function() {
                 if (!isOrderingMode) {
-                    // Si mode consultation : active le mode commande automatiquement
                     isOrderingMode = true;
                     container.classList.add('ordering-active');
                 }
@@ -606,7 +629,6 @@
                     document.getElementById('priceMoy').innerText = selectedPizza.pMoy.toLocaleString() + ' FCFA';
                     document.getElementById('priceGde').innerText = selectedPizza.pGde.toLocaleString() + ' FCFA';
                     
-                    // Reset sélection
                     selectSize('Moyenne');
                     openModal('sizeModal');
                 } else if (type === 'single') {
@@ -741,6 +763,13 @@
 
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        
+        // Fermer au clic à l'extérieur de la modale
+        function closeOnOverlay(event, id) {
+            if (event.target.id === id) {
+                closeModal(id);
+            }
+        }
     </script>
 </body>
 </html>
