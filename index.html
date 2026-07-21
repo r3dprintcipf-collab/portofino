@@ -269,71 +269,86 @@
             display: none;
         }
 
-        /* BOUTON DE COMMANDE FLOTTANT ET MOTO ORIENTÉE DANS LE BON SENS */
+        /* BOUTON DE COMMANDE FLOTTANT COMPACT & ANIMATION LARGE */
         .call-bar {
             position: fixed;
-            bottom: 20px;
+            bottom: 35px; /* Écarte du damier du bas */
             left: 0;
             right: 0;
             text-align: center;
             z-index: 999;
-            padding: 0 16px;
+            padding: 0 45px; /* Évite les damiers latéraux */
             pointer-events: none;
         }
 
         .btn-call {
             pointer-events: auto;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
             background-color: var(--brand-green);
             color: #fff;
             text-decoration: none;
-            padding: 16px 28px;
-            border-radius: 40px;
+            padding: 10px 20px; /* Plus compact */
+            border-radius: 30px;
             font-size: 0.95rem;
             font-weight: 700;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             white-space: nowrap;
-            box-shadow: 0 10px 30px rgba(27, 77, 62, 0.4);
+            box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
             width: 100%;
-            max-width: 420px;
+            max-width: 240px; /* Taille réduite */
+            margin: 0 auto;
             position: relative;
             overflow: hidden;
             animation: pulseGlow 3s infinite ease-in-out;
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+        }
+
+        /* CONTENEUR DE LA MOTO QUI S'ÉTEND SUR TOUTE LA LARGEUR DU BOUTON */
+        .scooter-wrapper {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
         }
 
         .scooter-icon {
             display: inline-block;
-            animation: driveScooterCorrect 4s infinite ease-in-out;
+            font-size: 1.1rem;
+            animation: driveScooterFull 5s infinite ease-in-out;
         }
 
-        @keyframes driveScooterCorrect {
+        /* ANIMATION DE GAUCHE À DROITE SUR TOUT LE BOUTON */
+        @keyframes driveScooterFull {
             0% { transform: translateX(0) scaleX(-1); }
-            45% { transform: translateX(35px) scaleX(-1); }
-            50% { transform: translateX(35px) scaleX(1); }
-            95% { transform: translateX(-35px) scaleX(1); }
+            45% { transform: translateX(calc(240px - 55px)) scaleX(-1); }
+            50% { transform: translateX(calc(240px - 55px)) scaleX(1); }
+            95% { transform: translateX(0) scaleX(1); }
             100% { transform: translateX(0) scaleX(-1); }
         }
 
         .btn-call:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(27, 77, 62, 0.55);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(27, 77, 62, 0.55);
             background-color: #153d31;
         }
 
         @keyframes pulseGlow {
-            0% { box-shadow: 0 8px 25px rgba(27, 77, 62, 0.4); }
-            50% { box-shadow: 0 12px 35px rgba(27, 77, 62, 0.65); }
-            100% { box-shadow: 0 8px 25px rgba(27, 77, 62, 0.4); }
+            0% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
+            50% { box-shadow: 0 10px 25px rgba(27, 77, 62, 0.6); }
+            100% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
         }
 
         .btn-call:active {
             transform: scale(0.96);
             background-color: var(--brand-red);
-            box-shadow: 0 4px 15px rgba(168, 35, 41, 0.4);
+            box-shadow: 0 4px 12px rgba(168, 35, 41, 0.4);
             animation: none;
         }
 
@@ -344,7 +359,7 @@
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
-            .btn-call { width: auto; max-width: none; animation: none; }
+            .btn-call { width: auto; max-width: 260px; animation: none; }
         }
     </style>
 </head>
@@ -565,10 +580,13 @@
             </div>
         </div>
 
-        <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE AVEC MOTO CORRIGÉE -->
+        <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE -->
         <div class="call-bar reveal delay-4" id="callBar">
             <a href="tel:+2250747005656" class="btn-call">
-                <span class="scooter-icon">🛵</span> Commander au +225 07 47 00 56 56
+                <div class="scooter-wrapper">
+                    <span class="scooter-icon">🛵</span>
+                </div>
+                Commander
             </a>
         </div>
 
