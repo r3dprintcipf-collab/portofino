@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofino - Menu</title>
+    <!-- Google Fonts pour 'menu', 'Kalam' + CDN Font pour 'Brittany Signature' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brittany-signature" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f7f3e9; /* Fond crème d'origine */
+            --card-bg: #fffbf2; /* Blanc cassé très chaud effet papier vintage */
+            --text-color: #1a1a1a;
+            --brand-red: #a82329;
+            --brand-green: #1b4d3e;
+            --line-color: #e2dacb;
+            --frise-size: 14px; /* Taille exacte d'un carré */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            opacity: 0;
+            animation: fadeInBody 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            background-image: 
+                radial-gradient(rgba(139, 69, 19, 0.04) 1px, transparent 0),
+                radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0);
+            background-size: 12px 12px, 20px 20px;
+            background-position: 0 0, 6px 6px;
+        }
+
+        @keyframes fadeInBody {
+            to { opacity: 1; }
+        }
+
+        /* --- SYSTÈME D'ANIMATION PROFESSIONNEL (SCROLL REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Décalages en cascade pour un effet haut de gamme */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* --- CADRE DAMIER FIXE ROBUSTE (ALIGNEMENT PARFAIT SANS COUPURE) --- */
+        .damier {
+            position: fixed;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><rect width="14" height="14" fill="%23a82329"/><rect x="14" width="14" height="14" fill="%23ffffff"/><rect y="14" width="14" height="14" fill="%23ffffff"/><rect x="14" y="14" width="14" height="14" fill="%23a82329"/></svg>');
+            background-size: 28px 28px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .damier-top { top: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; }
+        .damier-bottom { bottom: 0; left: 0; right: 0; height: 28px; background-repeat: repeat-x; background-position: left bottom; }
+        .damier-left { top: 28px; bottom: 28px; left: 0; width: 28px; background-repeat: repeat-y; }
+        .damier-right { top: 28px; bottom: 28px; right: 0; width: 28px; background-repeat: repeat-y; background-position: right top; }
+
+        /* CONTENEUR PRINCIPAL AVEC EFFET CARTE PAPIER VINTAGE & RELIEF */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 45px 32px 100px 32px;
+        }
+
+        .menu-card {
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+            padding: 30px 20px;
+            border: 1px solid rgba(226, 218, 203, 0.9);
+            position: relative;
+        }
+
+        /* EN-TÊTE MOBILE-FIRST AVEC ESPACE SÉCURISÉ POUR ÉVITER LES COUPURES */
+        .header-brand {
+            text-align: center;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 5px;
+        }
+
+        /* MASQUAGE PROPRE DU LOGO SANS COUPURE */
+        .header-brand img {
+            max-width: 185px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            -webkit-mask-image: radial-gradient(circle, black 68%, transparent 72%);
+            mask-image: radial-gradient(circle, black 68%, transparent 72%);
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .header-brand img:hover {
+            transform: scale(1.03);
+        }
+
+        .brand-subtitle {
+            font-family: 'Brittany Signature', cursive;
+            font-size: 1.7rem;
+            color: var(--brand-red);
+            line-height: 2.2;
+            margin-top: 8px;
+            margin-bottom: 2px;
+            text-align: center;
+            padding: 0 16px;
+            overflow: visible;
+            display: inline-block;
+            position: relative;
+            bottom: -4px;
+        }
+
+        .page-title {
+            font-family: 'Caveat', cursive;
+            font-size: 4.2rem;
+            color: var(--brand-green);
+            line-height: 1;
+            margin-top: 5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        /* GRILLE MOBILE : UNE SEULE COLONNE FLUIDE */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        /* TITRES DE SECTIONS */
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.6rem;
+            color: var(--brand-red);
+            margin-bottom: 8px;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--line-color), transparent);
+        }
+
+        /* LIGNES PRODUITS TACTILES AVEC EFFET HOVER FLUIDE */
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 14px 10px;
+            border-bottom: 1px dashed var(--line-color);
+            position: relative;
+            border-radius: 8px;
+            transition: background-color 0.25s ease, transform 0.2s ease, padding-left 0.2s ease;
+        }
+
+        .item-row:hover {
+            background-color: rgba(27, 77, 62, 0.02);
+            padding-left: 14px;
+        }
+
+        .item-row:active {
+            background-color: rgba(168, 35, 41, 0.06);
+            transform: scale(0.985);
+        }
+
+        .item-details { 
+            padding-right: 12px; 
+            flex-grow: 1;
+        }
+        
+        .item-name { 
+            font-family: 'Kalam', cursive, sans-serif;
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            text-transform: capitalize; 
+            letter-spacing: 0.3px; 
+            color: var(--text-color); 
+            transition: color 0.2s ease;
+        }
+
+        .item-row:hover .item-name {
+            color: var(--brand-green);
+        }
+
+        .drink-name {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--text-color);
+        }
+        
+        .item-desc { 
+            font-size: 0.76rem; 
+            color: #5d5d5d; 
+            margin-top: 2px; 
+            line-height: 1.35; 
+        }
+
+        .item-prices {
+            display: flex;
+            gap: 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--brand-red);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .item-prices span { 
+            min-width: 44px; 
+            text-align: right; 
+        }
+
+        .price-header {
+            display: flex;
+            justify-content: flex-end;
+            gap: 14px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #777;
+            padding-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .price-header span { 
+            min-width: 44px; 
+            text-align: right; 
+        }
+
+        .right-column-header {
+            display: none;
+        }
+
+        /* BOUTON DE COMMANDE FLOTTANT COMPACT & ANIMATION LARGE */
+        .call-bar {
+            position: fixed;
+            bottom: 35px; /* Écarte du damier du bas */
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 999;
+            padding: 0 45px; /* Évite les damiers latéraux */
+            pointer-events: none;
+        }
+
+        .btn-call {
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--brand-green);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px; /* Plus compact */
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
+            width: 100%;
+            max-width: 240px; /* Taille réduite */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 3s infinite ease-in-out;
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+        }
+
+        /* CONTENEUR DE LA MOTO QUI S'ÉTEND SUR TOUTE LA LARGEUR DU BOUTON */
+        .scooter-wrapper {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            top: 0;
+            bottom: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .scooter-icon {
+            display: inline-block;
+            font-size: 1.1rem;
+            animation: driveScooterFull 5s infinite ease-in-out;
+        }
+
+        /* ANIMATION DE GAUCHE À DROITE SUR TOUT LE BOUTON */
+        @keyframes driveScooterFull {
+            0% { transform: translateX(0) scaleX(-1); }
+            45% { transform: translateX(calc(240px - 55px)) scaleX(-1); }
+            50% { transform: translateX(calc(240px - 55px)) scaleX(1); }
+            95% { transform: translateX(0) scaleX(1); }
+            100% { transform: translateX(0) scaleX(-1); }
+        }
+
+        .btn-call:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(27, 77, 62, 0.55);
+            background-color: #153d31;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
+            50% { box-shadow: 0 10px 25px rgba(27, 77, 62, 0.6); }
+            100% { box-shadow: 0 6px 18px rgba(27, 77, 62, 0.35); }
+        }
+
+        .btn-call:active {
+            transform: scale(0.96);
+            background-color: var(--brand-red);
+            box-shadow: 0 4px 12px rgba(168, 35, 41, 0.4);
+            animation: none;
+        }
+
+        /* ADAPTATION ORDINATEUR */
+        @media (min-width: 769px) {
+            .container { max-width: 1100px; padding: 50px 40px 60px; }
+            .menu-card { padding: 50px 60px; }
+            .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+            .right-column-header { display: flex; }
+            .call-bar { position: static; margin-top: 45px; padding: 0; }
+            .btn-call { width: auto; max-width: 260px; animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CADRE DAMIER FIXE CORRIGÉ SUR LES 4 CÔTÉS -->
+    <div class="damier damier-top"></div>
+    <div class="damier damier-bottom"></div>
+    <div class="damier damier-left"></div>
+    <div class="damier damier-right"></div>
+
+    <!-- CONTENEUR PRINCIPAL -->
+    <div class="container">
+        
+        <div class="menu-card reveal" id="menuCard">
+            <!-- EN-TÊTE -->
+            <div class="header-brand">
+                <img src="logo.jpg" 
+                     alt="Logo Portofino - Pizzeria & Grill" 
+                     width="200" 
+                     height="200" 
+                     fetchpriority="high" 
+                     loading="eager" 
+                     decoding="async">
+                <div class="brand-subtitle reveal delay-1">By H. Salloub</div>
+                <h1 class="page-title reveal delay-2">menu</h1>
+            </div>
+
+            <div class="menu-grid">
+                
+                <!-- COLONNE GAUCHE : PIZZAS 1 -->
+                <div class="reveal delay-3">
+                    <h2 class="section-title">Pizzas</h2>
+                    
+                    <div class="price-header">
+                        <span>Moy.</span>
+                        <span>Gde.</span>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Margherita</div>
+                            <div class="item-desc">Sauce tomate, fromage, origan</div>
+                        </div>
+                        <div class="item-prices"><span>7 500</span><span>8 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Reine</div>
+                            <div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 000</span><span>9 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">4 Fromages</div>
+                            <div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Pepperoni</div>
+                            <div class="item-desc">Sauce tomate, fromage, pepperoni, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Calabraise</div>
+                            <div class="item-desc">Sauce tomate, fromage, jambon, olives, champignons, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Royale</div>
+                            <div class="item-desc">Sauce tomate, fromage, jambon, champignons, olives, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Sojok</div>
+                            <div class="item-desc">Sauce tomate, fromage, sojok, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Mexicaine</div>
+                            <div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                    </div>
+                </div>
+
+                <!-- COLONNE DROITE : SUITE PIZZAS + BOISSONS -->
+                <div class="reveal delay-4">
+                    <div class="price-header right-column-header">
+                        <span>Moy.</span>
+                        <span>Gde.</span>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Poulet BBQ</div>
+                            <div class="item-desc">Sauce tomate, fromage, poulet, oignons, poivrons, sauce barbecue, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Portofino By H. Salloub</div>
+                            <div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Crevettes</div>
+                            <div class="item-desc">Sauce tomate, fromage, crevettes, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 000</span><span>10 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Reine aux Crevettes</div>
+                            <div class="item-desc">Sauce tomate, fromage, crevettes, champignons, olives, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 500</span><span>10 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Fruits de Mer</div>
+                            <div class="item-desc">Sauce tomate, fromage, calamars, moules, crevettes, origan</div>
+                        </div>
+                        <div class="item-prices"><span>9 500</span><span>10 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Saumon</div>
+                            <div class="item-desc">Sauce tomate, fromage, saumon, citron, crème fraîche, origan</div>
+                        </div>
+                        <div class="item-prices"><span>10 000</span><span>11 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Végétarienne</div>
+                            <div class="item-desc">Sauce tomate, fromage, poivrons, oignons, champignons, olives, origan</div>
+                        </div>
+                        <div class="item-prices"><span>8 500</span><span>9 500</span></div>
+                    </div>
+
+                    <!-- DERNIÈRE PIZZA : BELLA CIAO (SUCRÉE) -->
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="item-name">Bella Ciao 🍫</div>
+                            <div class="item-desc">Nutella, banane</div>
+                        </div>
+                        <div class="item-prices"><span style="min-width: 90px; text-align: right;">5 000</span></div>
+                    </div>
+
+                    <!-- SECTION BOISSONS -->
+                    <h2 class="section-title" style="margin-top: 38px;">Boissons</h2>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="drink-name">Eau 0,5 L / 1 L</div>
+                        </div>
+                        <div class="item-prices"><span>500 / 1 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="drink-name">Soda</div>
+                            <div class="item-desc">Coca-Cola, Fanta, Sprite, Coca Zéro</div>
+                        </div>
+                        <div class="item-prices"><span>1 000</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="drink-name">Ice Tea</div>
+                        </div>
+                        <div class="item-prices"><span>1 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="drink-name">Cody's</div>
+                        </div>
+                        <div class="item-prices"><span>1 500</span></div>
+                    </div>
+
+                    <div class="item-row">
+                        <div class="item-details">
+                            <div class="drink-name">Red Bull</div>
+                        </div>
+                        <div class="item-prices"><span>2 000</span></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- BOUTON DE COMMANDE FLOTTANT POUR MOBILE -->
+        <div class="call-bar reveal delay-4" id="callBar">
+            <a href="tel:+2250747005656" class="btn-call">
+                <div class="scooter-wrapper">
+                    <span class="scooter-icon">🛵</span>
+                </div>
+                Commander
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT D'ANIMATION AU CHARGEMENT ET AU SCROLL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    element.classList.add('active');
+                });
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>
