@@ -94,11 +94,11 @@
             pointer-events: none;
         }
 
-        /* CONTENEUR PRINCIPAL (Correction des marges de défilement) */
+        /* CONTENEUR PRINCIPAL */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 45px 32px 110px 32px; /* Marges intérieures ajustées */
+            padding: 45px 32px 110px 32px;
         }
 
         .menu-card {
@@ -108,7 +108,37 @@
             padding: 30px 20px;
             border: 1px solid rgba(226, 218, 203, 0.9);
             position: relative;
-            margin-top: 10px; /* Espace sous le damier du haut */
+            margin-top: 10px;
+        }
+
+        /* BOUTON RETOUR ACCUEIL (DISCRET EN HAUT À GAUCHE) */
+        .btn-home {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #666;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--line-color);
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .btn-home:hover {
+            color: var(--brand-red);
+            background-color: #fff;
+            border-color: var(--brand-red);
+        }
+
+        .btn-home:active {
+            transform: scale(0.95);
         }
 
         .header-brand {
@@ -117,7 +147,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 5px;
+            padding-top: 15px; /* Ajusté pour laisser de l'espace avec le bouton Home */
         }
 
         .header-brand img {
@@ -360,6 +390,7 @@
         @media (min-width: 769px) {
             .container { max-width: 1100px; padding: 50px 40px 60px; }
             .menu-card { padding: 50px 60px; margin-top: 0; }
+            .btn-home { top: 24px; left: 24px; font-size: 0.85rem; padding: 6px 14px; }
             .menu-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
             .right-column-header { display: flex; }
             .call-bar { position: static; margin-top: 45px; padding: 0; }
@@ -378,6 +409,12 @@
     <div class="container">
         
         <div class="menu-card reveal" id="menuCard">
+
+            <!-- BOUTON ACCUEIL DISCRET -->
+            <a href="index.html" class="btn-home">
+                <span>🏠</span> Accueil
+            </a>
+
             <div class="header-brand">
                 <img src="logo.jpg" 
                      alt="Logo Portofino - Pizzeria & Grill" 
