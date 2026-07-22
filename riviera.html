@@ -209,7 +209,27 @@
             font-size: 1.1rem; 
             font-weight: 700; 
             color: var(--text-color); 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
+        
+        /* BADGES PLATS */
+        .badge {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 0.65rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            display: inline-block;
+        }
+        .badge-special { background-color: #fff0f0; color: var(--brand-red); border: 1px solid rgba(168, 35, 41, 0.3); }
+        .badge-hot { background-color: #fff3e6; color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+        .badge-top { background-color: #e6f4ea; color: var(--brand-green); border: 1px solid rgba(27, 77, 62, 0.3); }
+
         .drink-name {
             font-size: 0.92rem;
             font-weight: 700;
@@ -281,6 +301,29 @@
             display: inline-block;
             margin-right: 6px;
             animation: motoVibe 0.6s infinite ease-in-out;
+        }
+
+        /* NOTIFICATION TOAST */
+        .toast-notif {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: var(--brand-green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .toast-notif.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
         /* MODALES ET POPUPS */
@@ -417,13 +460,41 @@
         .btn-sec { background: #e0e0e0; color: #333; }
         .btn-pri { background: var(--brand-green); color: #fff; }
 
+        /* ÉLÉMENTS DE LA LISTE PANIER */
         .cart-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid var(--line-color);
             font-size: 0.9rem;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--line-color);
+            background: #fff;
+            color: var(--brand-green);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .qty-btn:hover {
+            background-color: var(--brand-green);
+            color: #fff;
         }
 
         @media (min-width: 769px) {
@@ -441,6 +512,9 @@
     <div class="damier damier-bottom"></div>
     <div class="damier damier-left"></div>
     <div class="damier damier-right"></div>
+
+    <!-- NOTIFICATION DE CONFIRMATION -->
+    <div class="toast-notif" id="toastNotif">✓ Ajouté au panier !</div>
 
     <div class="container" id="mainContainer">
         
@@ -467,12 +541,12 @@
                     </div>
 
                     <div class="item-row" data-type="pizza" data-name="Reine" data-pmoy="8000" data-pgde="9000">
-                        <div class="item-details"><div class="item-name">Reine</div><div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div></div>
+                        <div class="item-details"><div class="item-name">Reine <span class="badge badge-top">Top Vente</span></div><div class="item-desc">Sauce tomate, fromage, olives, champignons, origan</div></div>
                         <div class="item-prices"><span>8 000</span><span>9 000</span></div>
                     </div>
 
                     <div class="item-row" data-type="pizza" data-name="4 Fromages" data-pmoy="8500" data-pgde="9500">
-                        <div class="item-details"><div class="item-name">4 Fromages</div><div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div></div>
+                        <div class="item-details"><div class="item-name">4 Fromages <span class="badge badge-top">Top Vente</span></div><div class="item-desc">Fromage, roquefort, parmesan, crème fraîche, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
@@ -492,12 +566,12 @@
                     </div>
 
                     <div class="item-row" data-type="pizza" data-name="Sojok" data-pmoy="8500" data-pgde="9500">
-                        <div class="item-details"><div class="item-name">Sojok</div><div class="item-desc">Sauce tomate, fromage, sojok, origan</div></div>
+                        <div class="item-details"><div class="item-name">Sojok <span class="badge badge-hot">🌶️ Épicé</span></div><div class="item-desc">Sauce tomate, fromage, sojok, origan</div></div>
                         <div class="item-prices"><span>8 500</span><span>9 500</span></div>
                     </div>
 
                     <div class="item-row" data-type="pizza" data-name="Mexicaine" data-pmoy="9000" data-pgde="10000">
-                        <div class="item-details"><div class="item-name">Mexicaine</div><div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div></div>
+                        <div class="item-details"><div class="item-name">Mexicaine <span class="badge badge-hot">🌶️ Épicé</span></div><div class="item-desc">Sauce tomate, fromage, bœuf haché, oignons, poivrons, olives, champignons, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
                 </div>
@@ -512,7 +586,7 @@
                     </div>
 
                     <div class="item-row" data-type="pizza" data-name="Portofino By H. Salloub" data-pmoy="9000" data-pgde="10000">
-                        <div class="item-details"><div class="item-name">Portofino By H. Salloub</div><div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div></div>
+                        <div class="item-details"><div class="item-name">Portofino <span class="badge badge-special">⭐ Spécialité</span></div><div class="item-desc">Sauce tomate, fromage, pepperoni, sojok, œuf, origan</div></div>
                         <div class="item-prices"><span>9 000</span><span>10 000</span></div>
                     </div>
 
@@ -653,6 +727,19 @@
 
         const mainBtn = document.getElementById('mainActionBtn');
 
+        // Charger les données sauvegardées du client au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('portofino_name')) {
+                document.getElementById('clientName').value = localStorage.getItem('portofino_name');
+            }
+            if (localStorage.getItem('portofino_location')) {
+                document.getElementById('clientLocation').value = localStorage.getItem('portofino_location');
+            }
+            if (localStorage.getItem('portofino_phone')) {
+                document.getElementById('clientPhone').value = localStorage.getItem('portofino_phone');
+            }
+        });
+
         mainBtn.addEventListener('click', function() {
             openCart();
         });
@@ -712,6 +799,28 @@
                 cart.push({ name: itemName, price: price, qty: 1 });
             }
             updateCartButton();
+            showToast();
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            if (cart.length === 0) {
+                closeModal('cartModal');
+            } else {
+                openCart();
+            }
+            updateCartButton();
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toastNotif');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1600);
         }
 
         function updateCartButton() {
@@ -743,11 +852,13 @@
                 listContainer.innerHTML += `
                     <div class="cart-item-row">
                         <div>
-                            <strong>${item.qty}x</strong> ${item.name}
+                            <strong>${item.name}</strong>
+                            <div style="font-size:0.8rem; color:#777;">${subtotal.toLocaleString()} FCFA</div>
                         </div>
-                        <div>
-                            ${subtotal.toLocaleString()} FCFA 
-                            <button onclick="removeFromCart(${index})" style="border:none; background:none; color:red; cursor:pointer; margin-left:8px;">❌</button>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+                            <span style="font-weight:bold; min-width:18px; text-align:center;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
                         </div>
                     </div>
                 `;
@@ -755,16 +866,6 @@
 
             document.getElementById('cartTotalText').innerText = `Total : ${total.toLocaleString()} FCFA`;
             openModal('cartModal');
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            if (cart.length === 0) {
-                closeModal('cartModal');
-            } else {
-                openCart();
-            }
-            updateCartButton();
         }
 
         function sendWhatsApp() {
@@ -777,6 +878,11 @@
                 alert("Veuillez remplir votre nom, le quartier et votre numéro de téléphone.");
                 return;
             }
+
+            // Sauvegarder dans le navigateur pour les prochaines fois
+            localStorage.setItem('portofino_name', name);
+            localStorage.setItem('portofino_location', location);
+            localStorage.setItem('portofino_phone', phone);
 
             let message = `🍕 *NOUVELLE COMMANDE - PORTOFINO (RIVIERA)*\n\n`;
             message += `👤 *Client :* ${name}\n`;
@@ -799,7 +905,7 @@
 
             const encodedMessage = encodeURIComponent(message);
             
-            // NUMÉRO DE COMMANDE RIVIERA MODIFIÉ
+            // NUMÉRO DE COMMANDE RIVIERA
             const whatsappURL = `https://wa.me/2250708843333?text=${encodedMessage}`;
 
             window.open(whatsappURL, '_blank');
